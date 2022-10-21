@@ -11,11 +11,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "post")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class PostEntity {
 
     @Id
