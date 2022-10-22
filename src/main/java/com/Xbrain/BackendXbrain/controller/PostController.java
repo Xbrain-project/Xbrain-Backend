@@ -3,11 +3,13 @@ package com.Xbrain.BackendXbrain.controller;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 
 import com.Xbrain.BackendXbrain.services.PostService;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
+
 
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -42,12 +44,18 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostEntity> getPost() {
+    public List<PostEntity> getPost(){
         return postService.getPost();
     }
 
     @GetMapping("/post/{id}")
     public ResponseEntity<Optional<PostEntity>> getPostById(@PathVariable Long id){
-        return  postService.getPostById(id);
+        return postService.getPostById(id);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deletePost(@PathVariable Long id){
+        return postService.deletePost(id);
+    }
+
 }

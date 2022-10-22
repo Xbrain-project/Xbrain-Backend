@@ -5,6 +5,7 @@ package com.Xbrain.BackendXbrain.services;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 
 import com.Xbrain.BackendXbrain.repository.PostRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +42,6 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public ResponseEntity<Optional<PostEntity>> getPostById(Long id) {
-        Optional<PostEntity> postEntity = postRepository.findById(id);
-         return  ResponseEntity.ok(postEntity);
-    }
-
-    @Override
     public List<PostEntity> getPost() {
         List<PostEntity> postEntities
                 = postRepository.findAll();
@@ -64,4 +59,19 @@ public class PostServiceImpl implements PostService {
                 ).collect(Collectors.toList());
         return posts;
     }
+
+    @Override
+    public ResponseEntity<Optional<PostEntity>> getPostById(Long id) {
+        Optional<PostEntity> postEntity = postRepository.findById(id);
+        return  ResponseEntity.ok(postEntity);
+    }
+
+    @Override
+    public ResponseEntity<HttpStatus> deletePost(Long id) {
+        Optional<PostEntity> postEntity = postRepository.findById(id);
+
+        postRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
