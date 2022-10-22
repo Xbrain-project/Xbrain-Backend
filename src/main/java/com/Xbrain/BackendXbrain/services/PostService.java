@@ -2,13 +2,17 @@ package com.Xbrain.BackendXbrain.services;
 
 
 
-import com.Xbrain.BackendXbrain.model.Post;
-import org.springframework.web.multipart.MultipartFile;
+import com.Xbrain.BackendXbrain.entity.PostEntity;
+
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PostService {
-    Post addPost(Post post) throws Exception;
+    PostEntity addPost(PostEntity post) throws Exception;
 
-    List<Post> getPost();
+    ResponseEntity<Optional<PostEntity>> getPostById(Long id);
+
+    List<PostEntity> getPost();
 }

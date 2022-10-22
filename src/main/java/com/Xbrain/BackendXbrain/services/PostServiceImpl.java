@@ -3,13 +3,14 @@ package com.Xbrain.BackendXbrain.services;
 
 
 import com.Xbrain.BackendXbrain.entity.PostEntity;
-import com.Xbrain.BackendXbrain.model.Post;
+
 import com.Xbrain.BackendXbrain.repository.PostRepository;
-import org.springframework.beans.BeanUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,38 +23,40 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post addPost(Post post) throws Exception {
-        try {
+    public PostEntity addPost(PostEntity postEntity) throws Exception {
 
-            PostEntity postEntity = new PostEntity();
-            BeanUtils.copyProperties(post, postEntity);
+//        try {
+//            PostEntity postEntity = new PostEntity();
+//            BeanUtils.copyProperties(post, postEntity);
 //            if (post.getFile() != null && !post.getFile().equalsIgnoreCase("null"))
 //                postEntity.setImage(post.getFile());
 //            else
 //                postEntity.setImage(null);
+//            post.setId(postEntity.getId());
+//        } catch (Exception e) {
+//            throw new Exception("Could not save Post: " + e);
+//        }
 
-            postRepository.save(postEntity);
-
-            post.setId(postEntity.getId());
-
-
-        } catch (Exception e) {
-            throw new Exception("Could not save Post: " + e);
-        }
-        return post;
+        return  postRepository.save(postEntity);
     }
 
     @Override
-    public List<Post> getPost() {
+    public ResponseEntity<Optional<PostEntity>> getPostById(Long id) {
+        Optional<PostEntity> postEntity = postRepository.findById(id);
+         return  ResponseEntity.ok(postEntity);
+    }
+
+    @Override
+    public List<PostEntity> getPost() {
         List<PostEntity> postEntities
                 = postRepository.findAll();
 
-        List<Post> posts = new ArrayList<>();
+        List<PostEntity> posts = new ArrayList<>();
         posts = postEntities.stream()
                 .map((postEntity) ->
-                        Post.builder()
-                                .id(postEntity.getId())
-                                .timeStamp(postEntity.getTimeStamp())
+                        PostEntity.builder()
+                                .postId(postEntity.getPostId())
+                                .TimeStamp(postEntity.getTimeStamp())
                                 .email(postEntity.getEmail())
                                 .name(postEntity.getName())
                                 .post(postEntity.getPost())

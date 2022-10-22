@@ -1,13 +1,13 @@
 package com.Xbrain.BackendXbrain.controller;
 
-import com.Xbrain.BackendXbrain.model.Post;
-import com.Xbrain.BackendXbrain.services.PostService;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import com.Xbrain.BackendXbrain.entity.PostEntity;
 
-import java.util.Date;
+import com.Xbrain.BackendXbrain.services.PostService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -20,25 +20,34 @@ public class PostController {
         this.postService = postService;
     }
 
+//    @PostMapping("/post")
+//    public Post addPost(@RequestParam Map<String,String> requestParams
+//    ) throws Exception {
+//        String strPost = requestParams.get("post");
+//        String email = requestParams.get("email");
+//        String name = requestParams.get("name");
+//
+//        Post post = Post.builder()
+//                .name(name)
+//                .email(email)
+//                .post(strPost)
+//                .timeStamp(new Date().toString())
+//                .build();
+//        post = postService.addPost(post);
+//        return post;
+//    }
     @PostMapping("/post")
-    public Post addPost(@RequestParam Map<String,String> requestParams
-    ) throws Exception {
-        String strPost = requestParams.get("post");
-        String email = requestParams.get("email");
-        String name = requestParams.get("name");
-
-        Post post = Post.builder()
-                .name(name)
-                .email(email)
-                .post(strPost)
-                .timeStamp(new Date().toString())
-                .build();
-        post = postService.addPost(post);
-        return post;
+    public PostEntity addPost(@RequestBody PostEntity postEntity) throws Exception {
+        return postService.addPost(postEntity);
     }
 
     @GetMapping
-    public List<Post> getPost() {
+    public List<PostEntity> getPost() {
         return postService.getPost();
+    }
+
+    @GetMapping("/post/{id}")
+    public ResponseEntity<Optional<PostEntity>> getPostById(@PathVariable Long id){
+        return  postService.getPostById(id);
     }
 }

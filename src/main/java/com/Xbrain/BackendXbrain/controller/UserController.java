@@ -11,7 +11,6 @@ import java.util.List;
 @CrossOrigin("http://localhost:3000")
 public class UserController {
 
-
     private UserService userService;
 
     public UserController(UserService userService) {
@@ -33,4 +32,5 @@ public class UserController {
 //        return userRepo.findById(id)
 //                .orElseThrow(()->new UserNotFoundException(id));
 //    }
+
 }
