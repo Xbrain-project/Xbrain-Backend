@@ -19,8 +19,11 @@ public class TeacherPostServiceImpl implements TeacherPostService {
         return searchTP;
     }
 
-    @Override
-    public TeacherPost createTeacherPost(TeacherPost teacherPost) {
-        return teacherPostRepository.save(teacherPost);
-    }
+//    @Override
+//    public List<TeacherPost> searchByIdTeacherPost(Long query) {
+//        List<TeacherPost> searchByIdTP = teacherPostRepository.searchByIdTeacherPost(query);
+//        return searchByIdTP;
+//    }
+
+
 }

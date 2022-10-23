@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class Post {
 
     private String id;
-
     private String post;
     private String name;
     private String email;

@@ -38,6 +38,15 @@ public class TeacherPostController {
         return ResponseEntity.ok(teacherPostService.searchTeacherPost(query));
     }
 
+//    @GetMapping("/sbpid")
+//    List<TeacherPost> searchByIdTeacherPost(@RequestParam("query") Long query){
+//        return teacherPostRepository.findById(query);
+//    }
+
+//    @PutMapping
+//    public List<TeacherPost> updatePost(){
+//        return ;
+//    }
 
 //    @PostMapping("/alltpost")
 //    public TeacherPost createTeacherPost(@RequestBody TeacherPost teacherPost){
