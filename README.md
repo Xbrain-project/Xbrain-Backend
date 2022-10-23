@@ -1,4 +1,8 @@
 # Xbrain-Backend
+```bash
+  add Entity
+  basic update delete insert 
+
 
 ## REST API Route
 
