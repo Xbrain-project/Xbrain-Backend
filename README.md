@@ -1,9 +1,13 @@
 # Xbrain-Backend
-## REST API Route
-  - [x]Entity with keys,
-  - [x]basic update delete insert post 
-  - []search
 
+### WORK
+- [x] Entity with keys,
+- [x] basic update delete insert post
+- [ ] search
+
+
+
+## REST API Route
 ```bash
 
 ## Register ##
