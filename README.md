@@ -1,9 +1,12 @@
 # Xbrain-Backend
 
-### WORK
-- [x] Entity with keys,
-- [x] basic update delete insert post
-- [ ] search
+### is developing ... 
+- [ ] Entities with keys.
+- [ ] update delete insert post.
+- [ ] Search (need more info).
+- [ ] Post applyment.
+
+
 
 
 
