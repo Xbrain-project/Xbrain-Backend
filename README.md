@@ -1,6 +1,5 @@
 # Xbrain-Backend
-  -add Entity
-  -basic update delete insert 
+  - Entity with keys, basic update delete insert post , search <NOT DONE>
 
 
 ## REST API Route
