@@ -1,7 +1,8 @@
 package com.Xbrain.BackendXbrain.services;
 
-import com.Xbrain.BackendXbrain.model.User;
+import com.Xbrain.BackendXbrain.entity.UserEntity;
+
 
 public interface UserService {
-    User newUser(User newUser);
+    UserEntity newUser(UserEntity newUser);
 }

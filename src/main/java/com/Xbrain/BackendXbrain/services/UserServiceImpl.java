@@ -1,7 +1,7 @@
 package com.Xbrain.BackendXbrain.services;
 
 import com.Xbrain.BackendXbrain.entity.UserEntity;
-import com.Xbrain.BackendXbrain.model.User;
+
 import com.Xbrain.BackendXbrain.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,9 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public User newUser(User newUser) {
-        UserEntity userEntity = new UserEntity();
-        BeanUtils.copyProperties(newUser, userEntity);
+    public UserEntity newUser(UserEntity newUser) {
 
-        userRepository.save(userEntity);
+        userRepository.save(newUser);
 
         return newUser;
     }

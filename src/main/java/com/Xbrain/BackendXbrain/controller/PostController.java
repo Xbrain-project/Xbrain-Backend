@@ -3,10 +3,12 @@ package com.Xbrain.BackendXbrain.controller;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 
 import com.Xbrain.BackendXbrain.services.PostService;
-import org.springframework.http.HttpEntity;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +46,7 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostEntity> getPost(){
+    public ArrayList<PostEntity> getPost(){
         return postService.getPost();
     }
 

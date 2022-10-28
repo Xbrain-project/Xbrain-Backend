@@ -8,30 +8,34 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 
+
+
 @Entity
-@Table(name = "postCommu")
+@Table(name = "post_commu")
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostEntity {
+public class PostEntity implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "uuid")
+    @GeneratedValue
+//    @Column(name = "POST_ID")
+    private Long postId;
 //    @GenericGenerator(name = "uuid", strategy = "uuid2")
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private Long postId;
+//    @ManyToOne
+//    private UserEntity userId;
+    private String user_id;
+    @Lob
+    private String description;
 
-    private String post;
-    private String name;
-    private String email;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date TimeStamp;
+    private Timestamp timestamp;
 
 
 

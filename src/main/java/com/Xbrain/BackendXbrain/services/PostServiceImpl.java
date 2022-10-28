@@ -10,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -42,23 +40,28 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostEntity> getPost() {
-        List<PostEntity> postEntities
-                = postRepository.findAll();
-
-        List<PostEntity> posts = new ArrayList<>();
-        posts = postEntities.stream()
-                .map((postEntity) ->
-                        PostEntity.builder()
-                                .postId(postEntity.getPostId())
-                                .TimeStamp(postEntity.getTimeStamp())
-                                .email(postEntity.getEmail())
-                                .name(postEntity.getName())
-                                .post(postEntity.getPost())
-                                .build()
-                ).collect(Collectors.toList());
-        return posts;
+    public ArrayList<PostEntity> getPost() {
+        return (ArrayList<PostEntity>) postRepository.findAll();
     }
+
+//    @Override
+//    public List<PostEntity> getPost() {
+//        List<PostEntity> postEntities
+//                = postRepository.findAll();
+//
+//        List<PostEntity> posts = new ArrayList<>();
+//        posts = postEntities.stream()
+//                .map((postEntity) ->
+//                        PostEntity.builder()
+//                                .postId(postEntity.getPostId())
+//                                .TimeStamp(postEntity.getTimeStamp())
+//                                .email(postEntity.getEmail())
+//                                .name(postEntity.getName())
+//                                .post(postEntity.getPost())
+//                                .build()
+//                ).collect(Collectors.toList());
+//        return posts;
+//    }
 
     @Override
     public ResponseEntity<Optional<PostEntity>> getPostById(Long id) {
@@ -68,7 +71,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public ResponseEntity<HttpStatus> deletePost(Long id) {
-        Optional<PostEntity> postEntity = postRepository.findById(id);
 
         postRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

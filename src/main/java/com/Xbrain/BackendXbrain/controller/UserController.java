@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.controller;
 
-import com.Xbrain.BackendXbrain.model.User;
+import com.Xbrain.BackendXbrain.entity.UserEntity;
+
 import com.Xbrain.BackendXbrain.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public User newUser(@RequestBody User newUser){
+    public UserEntity newUser(@RequestBody UserEntity newUser){
         return userService.newUser(newUser);
     }
 
