@@ -10,14 +10,14 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Data
 @Table(name = "users")
+@Data
 
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private String id;
+    private Long id;
+    @Lob
     private String username;
     private String name;
     private String email;
