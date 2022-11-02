@@ -3,8 +3,9 @@ package com.Xbrain.BackendXbrain.services;
 import com.Xbrain.BackendXbrain.entity.UserEntity;
 
 import com.Xbrain.BackendXbrain.repository.UserRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -23,4 +24,16 @@ public class UserServiceImpl implements UserService{
 
         return newUser;
     }
+
+//    @Override
+//    public ResponseEntity<Optional<UserEntity>> displayUserMetaData(Long userid) {
+//        Optional<UserEntity> userEntity = userRepository.findById(userid);
+//        return  ResponseEntity.ok(userEntity);
+
+    @Override
+    public Optional<UserEntity> getUserById(Long id) {
+        return  userRepository.findById(id);
+    }
+
 }
+

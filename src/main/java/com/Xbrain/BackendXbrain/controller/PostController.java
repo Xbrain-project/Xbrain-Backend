@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,18 +45,23 @@ public class PostController {
     }
 
     @GetMapping
-    public ArrayList<PostEntity> getPost(){
+    public List<PostEntity> getPost(){
         return postService.getPost();
     }
 
-    @GetMapping("/post/{id}")
-    public ResponseEntity<Optional<PostEntity>> getPostById(@PathVariable Long id){
-        return postService.getPostById(id);
-    }
+//    @GetMapping("/post/{id}")
+//    public ResponseEntity<Optional<PostEntity>> getPostById(@PathVariable Long id){
+//        return postService.getPostById(id);
+//    }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deletePost(@PathVariable Long id){
-        return postService.deletePost(id);
-    }
+//    @GetMapping("/post/{id}")
+//    public Optional<PostEntity> getPostById(@PathVariable Long id){
+//        return postService.getPostById(id);
+//    }
+
+//    @DeleteMapping("/delete/{id}")
+//    public ResponseEntity<HttpStatus> deletePost(@PathVariable Long id){
+//        return postService.deletePost(id);
+//    }
 
 }
