@@ -1,25 +1,23 @@
 package com.Xbrain.BackendXbrain.services;
 
-
-
 import com.Xbrain.BackendXbrain.entity.PostEntity;
+import com.Xbrain.BackendXbrain.repository.PostRepository;
+import org.springframework.stereotype.Service;
 
-import com.Xbrain.BackendXbrain.entity.UserEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+@Service
+public class PostService {
 
-import javax.swing.text.html.Option;
-import java.util.List;
-import java.util.Optional;
+    private final PostRepository postRepository;
 
-public interface PostService {
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
-    PostEntity addPost(PostEntity postEntity) throws Exception;
+    public PostEntity addPost(String username, String description){
+        PostEntity entity = new PostEntity();
+        entity.setUsername(username);
+        entity.setDescription(description);
 
-    List<PostEntity> getPost();
-
-//    Optional<PostEntity> getPostById(Long id);
-//
-//    ResponseEntity<HttpStatus> deletePost(Long id);
-//    Optional<PostEntity> findByUser(UserEntity user);
+        return postRepository.save(entity);
+    }
 }

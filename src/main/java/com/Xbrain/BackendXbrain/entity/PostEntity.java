@@ -6,13 +6,14 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Date;
 
 
 
-
+@EqualsAndHashCode()
 @Entity
+
 @Table(name = "post_commu")
 @Data
 @Builder
@@ -24,7 +25,7 @@ public class PostEntity implements Serializable {
 //    @GenericGenerator(name = "uuid2", strategy = "uuid2")
 //    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     @Id
-    @GeneratedValue(generator = "uuid")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_generator")
     @Column(nullable = false, updatable = false)
     private Long postId;
 
@@ -33,11 +34,11 @@ public class PostEntity implements Serializable {
     private String description;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "users_user_id", nullable = false)
-    private UserEntity userEntity;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "users_user_id", nullable = false)
+//    private UserEntity userEntity;
 
-    private Timestamp timestamp;
+    private Date timestamp;
 
     public Long getPostId() {
         return postId;
@@ -64,11 +65,11 @@ public class PostEntity implements Serializable {
         this.description = description;
     }
 
-    public Timestamp getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 }

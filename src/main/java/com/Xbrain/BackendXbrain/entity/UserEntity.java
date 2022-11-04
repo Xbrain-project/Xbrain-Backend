@@ -19,9 +19,9 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
 
-    @OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<PostEntity> posts;
+//    @OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    private List<PostEntity> posts;
 
     private String username;
     private String name;

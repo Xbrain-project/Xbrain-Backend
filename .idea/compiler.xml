@@ -9,11 +9,22 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Backend-Xbrain" />
       </profile>
+      <profile name="Annotation profile for Backend-Xbrain" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+        </processorPath>
+        <module name="Xbrain-Backend" />
+      </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Backend-Xbrain" options="-parameters" />
+      <module name="Xbrain-Backend" options="-parameters" />
     </option>
   </component>
 </project>
