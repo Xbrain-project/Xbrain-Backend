@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -15,14 +14,46 @@ public class CommentEntity {
 
     @Id
     @GeneratedValue
-    private Long commentID;
-//    @OneToMany
-//    private UserEntity userEntity;
-//
-//    @OneToMany
-//    private PostEntity postEntity;
+    private Long id;
 
-    private String user_id;
-    private String comment;
-    private Timestamp timestamp;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "p_id", nullable = false)
+    private PostEntity postEntity;
+
+    @Lob
+    private String content;
+
+    private Date timestamp;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public PostEntity getPostEntity() {
+        return postEntity;
+    }
+
+    public void setPostEntity(PostEntity postEntity) {
+        this.postEntity = postEntity;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 }

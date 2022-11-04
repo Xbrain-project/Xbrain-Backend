@@ -17,23 +17,22 @@ class testService {
 
 
 	// unit test
-	@Test
-	@Order(1) //รันอันแรก
-	void testaddPost() {
-		PostEntity post = postService.addPost(
-				testData.username,
-				testData.discription
-		);
-
-		// check notnull
-		Assertions.assertNotNull(post);
-
-		// check equal กับค่าที่ส่งไปมั้ย
-		Assertions.assertEquals(testData.username, post.getUsername());
-		Assertions.assertEquals(testData.discription, post.getDescription());
-
-
-	}
+//	@Test
+//	@Order(1) //รันอันแรก
+//	void testaddPost() {
+//		PostEntity post = postService.addPost(
+//			testData
+//		);
+//
+//		// check notnull
+//		Assertions.assertNotNull(post);
+//
+//		// check equal กับค่าที่ส่งไปมั้ย
+//		Assertions.assertEquals(testData.username, post.getUsername());
+//		Assertions.assertEquals(testData.discription, post.getDescription());
+//
+//
+//	}
 
 
 	interface testData{

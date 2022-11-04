@@ -2,18 +2,13 @@ package com.Xbrain.BackendXbrain.entity;
 
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 
-
-@EqualsAndHashCode()
 @Entity
-
 @Table(name = "post_commu")
 @Data
 @Builder
@@ -27,42 +22,56 @@ public class PostEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_generator")
     @Column(nullable = false, updatable = false)
-    private Long postId;
+    private Long id;
 
-    private String username;
+
+    private String title;
+
     @Lob
-    private String description;
+    private String content;
 
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "users_user_id", nullable = false)
-//    private UserEntity userEntity;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "u_id", nullable = false)
+    private UserEntity userEntity;
+
+
 
     private Date timestamp;
 
-    public Long getPostId() {
-        return postId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
 
-    public String getUsername() {
-        return username;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     public Date getTimestamp() {

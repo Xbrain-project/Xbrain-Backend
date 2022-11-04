@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PostRepository extends CrudRepository<PostEntity, Long> {
+public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
-    Optional<PostEntity> findById(Long aLong);
+    Optional<PostEntity> findById(Long postId);
 
 
 }
