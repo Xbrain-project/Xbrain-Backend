@@ -1,12 +1,15 @@
 package com.Xbrain.BackendXbrain.services;
 
-import com.Xbrain.BackendXbrain.model.TeacherPost;
+import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
 
-import java.util.List;
-import java.util.function.LongFunction;
+import java.util.Optional;
 
 public interface TeacherPostService {
-    List<TeacherPost> searchTeacherPost(String query);
+     TeacherPostEntity addTeacherPost(TeacherPostEntity addTeacherPost) ;
+
+    Optional<TeacherPostEntity> updatePost(Long postId , TeacherPostEntity updatePost);
+
+    Optional<TeacherPostEntity> findById(Long postId);
 
 //    List<TeacherPost> searchByIdTeacherPost(Long query);
 //    TeacherPost searchByIdTeacherPost(String postID);

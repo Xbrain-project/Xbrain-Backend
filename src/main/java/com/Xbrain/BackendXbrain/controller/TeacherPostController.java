@@ -1,14 +1,12 @@
 package com.Xbrain.BackendXbrain.controller;
 
-import com.Xbrain.BackendXbrain.model.TeacherPost;
+import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
 import com.Xbrain.BackendXbrain.repository.TeacherPostRepository;
 import com.Xbrain.BackendXbrain.services.TeacherPostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TeacherPostController {
@@ -18,39 +16,31 @@ public class TeacherPostController {
     private TeacherPostRepository teacherPostRepository ;
 
     @Autowired
-    public TeacherPostController(TeacherPostService teacherPostService, TeacherPostRepository teacherPostRepository) {
+    public TeacherPostController(
+                    TeacherPostService teacherPostService ,
+                    TeacherPostRepository teacherPostRepository
+            )
+    {
         this.teacherPostService = teacherPostService;
         this.teacherPostRepository = teacherPostRepository;
     }
-
-    @PostMapping("/tpost")
-    TeacherPost newTeacherPost(@RequestBody TeacherPost newTeacherPost){
-        return teacherPostRepository.save(newTeacherPost);
+    @GetMapping(path = "/getTeacherPost/{postId}")
+    public Optional<TeacherPostEntity> findPostById(@PathVariable("postId") Long postId){
+        return teacherPostService.findById(postId);
     }
 
-    @GetMapping("/gettposts")
-    List<TeacherPost> getAllTeacherPost(){
-        return teacherPostRepository.findAll();
+    @PutMapping(path = "/updatePost/{postId}")
+    public Optional<TeacherPostEntity> updateTeacherPost(
+                @PathVariable("postId") Long postId ,
+                @RequestBody TeacherPostEntity updateTeacherPost
+            ){
+        return  teacherPostService.updatePost(postId ,updateTeacherPost );
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<TeacherPost>> searchTeacherPost(@RequestParam("query") String query){
-        return ResponseEntity.ok(teacherPostService.searchTeacherPost(query));
+    @PostMapping("/addTeacherPost")
+    public TeacherPostEntity newTeacherPost(@RequestBody TeacherPostEntity addTeacherPost ){
+        return teacherPostService.addTeacherPost(addTeacherPost) ;
     }
 
-//    @GetMapping("/sbpid")
-//    List<TeacherPost> searchByIdTeacherPost(@RequestParam("query") Long query){
-//        return teacherPostRepository.findById(query);
-//    }
-
-//    @PutMapping
-//    public List<TeacherPost> updatePost(){
-//        return ;
-//    }
-
-//    @PostMapping("/alltpost")
-//    public TeacherPost createTeacherPost(@RequestBody TeacherPost teacherPost){
-//        return  teacherPostService.createTeacherPost(teacherPost);
-//    }
 
 }
