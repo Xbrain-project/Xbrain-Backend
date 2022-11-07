@@ -5,7 +5,7 @@
 
 | Methods       | Urls                    | Actions  |
 | :-----------: |-------------------------| ---------|
-| POST          | /api/posts/:user_id | create post by userID |
+| `POST`          | /api/posts/:user_id | create post by userID |
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
 
