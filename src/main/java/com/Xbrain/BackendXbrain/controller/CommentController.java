@@ -1,4 +1,4 @@
-package com.Xbrain.BackendXbrain.Controller;
+package com.Xbrain.BackendXbrain.controller;
 
 
 
@@ -26,39 +26,34 @@ public class CommentController {
     }
 
 
-    @PostMapping("/{postId}")
+    @PostMapping("/posts/{postId}/comments")
     public ResponseEntity<Optional<Object>> createComment(@PathVariable(value = "postId") Long postId, @RequestBody CommentEntity comment)  {
         ResponseEntity<Optional<Object>> response =commentService.create(postId,comment);
 
         return response;
     }
 
-    @GetMapping("/{postId}/comments")
+    @GetMapping("/comments/{id}")
+    public ResponseEntity<Optional<CommentEntity>> getCommentById(@PathVariable Long id) {
+        ResponseEntity<Optional<CommentEntity>> postById = commentService.getCommentById(id);
+        return postById;
+    }
+
+    @GetMapping("/posts/{postId}/comments")
     public ResponseEntity<List<CommentEntity>> getAllCommentsByPostId(@PathVariable(value = "postId") Long postId) {
         List<CommentEntity> comments = commentService.getAllCommentsByPostId(postId);
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
-//    @GetMapping("/")
-//    public ResponseEntity<List<PostEntity>> getPosts(@RequestParam(required = false) String title) {
-//        List<PostEntity> allPosts = postService.getAllPosts();
-//
-//        return new ResponseEntity<>(allPosts, HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Optional<PostEntity>> getPostById(@PathVariable Long id) {
-//        ResponseEntity<Optional<PostEntity>> postById = postService.getPostById(id);
-//        return postById;
-//    }
-//
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<HttpStatus> deletePost(@PathVariable Long id) {
-//        ResponseEntity<HttpStatus> response = postService.deletePost(id);
-//
-//        return response;
-//    }
+    @DeleteMapping("/comments/{id}")
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable Long id) {
+        ResponseEntity<HttpStatus> response = commentService.deleteComment(id);
+
+        return response;
+    }
+
+
+
 
 
 }

@@ -4,6 +4,7 @@ import com.Xbrain.BackendXbrain.entity.CommentEntity;
 import com.Xbrain.BackendXbrain.repository.CommentRepository;
 import com.Xbrain.BackendXbrain.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,11 @@ public class CommentService {
         return ResponseEntity.ok(comment);
     }
 
+    public ResponseEntity<Optional<CommentEntity>> getCommentById(Long id) {
+        Optional<CommentEntity> commentEntity = commentRepository.findById(id);
+        return  ResponseEntity.ok(commentEntity);
+    }
+
     public List<CommentEntity> getAllCommentsByPostId(Long postId) {
 //        if (!postRepository.existsById(postId)) {
 //            throw new ResourceNotFoundException("Not found Tutorial with id = " + postId);
@@ -42,23 +48,11 @@ public class CommentService {
         return comments;
     }
 
-//    public List<PostEntity> getAllPosts(){
-//        List<PostEntity> posts = new ArrayList<PostEntity>();
-//
-//        postRepository.findAll().forEach(posts::add);
-//        return posts;
-//    }
+    public ResponseEntity<HttpStatus> deleteComment(Long id) {
+        commentRepository.deleteById(id);
 
-//    public ResponseEntity<Optional<PostEntity>> getPostById(Long id) {
-//        Optional<PostEntity> postEntity = postRepository.findById(id);
-//        return  ResponseEntity.ok(postEntity);
-//    }
-//
-//    public ResponseEntity<HttpStatus> deletePost(Long id) {
-//        postRepository.deleteById(id);
-//
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 
 

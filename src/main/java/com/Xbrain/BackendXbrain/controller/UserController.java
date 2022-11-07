@@ -1,4 +1,4 @@
-package com.Xbrain.BackendXbrain.Controller;
+package com.Xbrain.BackendXbrain.controller;
 
 
 import com.Xbrain.BackendXbrain.entity.UserEntity;
@@ -18,7 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/users")
     public UserEntity addUser(@RequestBody UserEntity user) throws BaseException {
 
 

@@ -40,7 +40,6 @@ public class PostEntity{
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private UserEntity userEntity;
-    // TODO: แก้เป็น User เฉยๆซะ
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
