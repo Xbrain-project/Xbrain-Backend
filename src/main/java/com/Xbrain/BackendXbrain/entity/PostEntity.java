@@ -1,11 +1,13 @@
 package com.Xbrain.BackendXbrain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 
 @Entity
@@ -15,7 +17,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class PostEntity implements Serializable {
+public class PostEntity{
 
 //    @GenericGenerator(name = "uuid2", strategy = "uuid2")
 //    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
@@ -30,15 +32,17 @@ public class PostEntity implements Serializable {
     @Lob
     private String content;
 
-
-
+    // FetchType.EAGER คือการ fetch ข้อมูล user ที่สร้างโพสขึ้นมาด้วย
+    //@ManyToOne(fetch = FetchType.EAGER, optional = false)
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "u_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private UserEntity userEntity;
+    // TODO: แก้เป็น User เฉยๆซะ
 
-
-
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
     public Long getId() {

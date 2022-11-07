@@ -1,12 +1,15 @@
 package com.Xbrain.BackendXbrain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Comment")
@@ -17,7 +20,8 @@ public class CommentEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "p_id", nullable = false)
+    @JoinColumn(name = "postId", nullable = false)
+    @JsonIgnore
     private PostEntity postEntity;
 
     @Lob

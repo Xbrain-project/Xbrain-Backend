@@ -39,7 +39,24 @@ public class PostService {
 
         postRepository.findAll().forEach(posts::add);
 
+//        if (posts.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+
         return posts;
     }
+
+    public ResponseEntity<Optional<PostEntity>> getPostById(Long id) {
+        Optional<PostEntity> postEntity = postRepository.findById(id);
+        return  ResponseEntity.ok(postEntity);
+    }
+
+    public ResponseEntity<HttpStatus> deletePost(Long id) {
+        postRepository.deleteById(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 
 }
