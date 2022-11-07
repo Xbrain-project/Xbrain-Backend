@@ -1,9 +1,9 @@
-package com.Xbrain.Xbrain.account.repository;
+package com.Xbrain.XbrainBackend.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.Xbrain.Xbrain.account.model.User;
+import com.Xbrain.XbrainBackend.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{

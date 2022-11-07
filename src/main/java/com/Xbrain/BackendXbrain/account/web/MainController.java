@@ -1,4 +1,4 @@
-package com.Xbrain.Xbrain.account.web;
+package com.Xbrain.XbrainBackend.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

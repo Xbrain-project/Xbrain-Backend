@@ -1,20 +1,24 @@
-package com.Xbrain.Xbrain.account.web.dto;
+package com.Xbrain.XbrainBackend.web.dto;
 
 public class UserRegistrationDto {
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+    private String phone;
+    private String classes;
 
-    public UserRegistrationDto(){
-
-    }
-    public UserRegistrationDto(String firstName, String lastName, String email, String password) {
+    public UserRegistrationDto(){}
+    
+    public UserRegistrationDto(String firstName, String lastName, String email, String password, String phone,
+            String classes) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.phone = phone;
+        this.classes = classes;
     }
 
     public String getFirstName() {
@@ -40,5 +44,17 @@ public class UserRegistrationDto {
     }
     public void setPassword(String password) {
         this.password = password;
-    } 
+    }
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getClasses() {
+        return classes;
+    }
+    public void setClasses(String classes) {
+        this.classes = classes;
+    }
 }

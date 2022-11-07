@@ -1,4 +1,4 @@
-package com.Xbrain.Xbrain.account.web;
+package com.Xbrain.XbrainBackend.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.Xbrain.Xbrain.account.sevice.UserService;
-import com.Xbrain.Xbrain.account.web.dto.UserRegistrationDto;
+import com.Xbrain.XbrainBackend.service.UserService;
+import com.Xbrain.XbrainBackend.web.dto.UserRegistrationDto;
 
 @Controller
-@RequestMapping("/registraton")
+@RequestMapping("/registration")
 public class UserRegistrationController {
     
     private UserService userService;
@@ -19,12 +19,12 @@ public class UserRegistrationController {
         super();
         this.userService = userService;
     }
-
+    
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto(){
         return new UserRegistrationDto();
     }
-
+    
     @GetMapping
     public String showRegistrationForm(){
         return "registration";

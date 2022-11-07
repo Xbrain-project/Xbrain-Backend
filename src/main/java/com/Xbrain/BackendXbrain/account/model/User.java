@@ -1,4 +1,4 @@
-package com.Xbrain.Xbrain.account.model;
+package com.Xbrain.XbrainBackend.model;
 
 import java.util.Collection;
 
@@ -19,39 +19,48 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "first_name")
-    private String firstName;
+	private String firstName;
 
     @Column(name = "last_name")
-    private String lastName;
+	private String lastName;
 
-    private String email;
+	private String email;
 
-    private String password;
+	private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
+    private String phone;
+
+    private String classes;
+
+    
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(
 			name = "users_roles",
 			joinColumns = @JoinColumn(
 		            name = "user_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(
 				            name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
 
-    public User(){}
-    
-    public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+	private Collection<Role> roles;
+
+    public User() {}
+    public User(String firstName, String lastName, String email, String password, String phone, String classes,
+            Collection<Role> roles) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.phone = phone;
+        this.classes = classes;
         this.roles = roles;
     }
+
     public Long getId() {
         return id;
     }
@@ -82,12 +91,22 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getClasses() {
+        return classes;
+    }
+    public void setClasses(String classes) {
+        this.classes = classes;
+    }
     public Collection<Role> getRoles() {
         return roles;
     }
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
-
-    
 }

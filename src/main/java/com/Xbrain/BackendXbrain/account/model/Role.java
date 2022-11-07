@@ -1,4 +1,4 @@
-package com.Xbrain.Xbrain.account.model;
+package com.Xbrain.XbrainBackend.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    
+
     public Role(){}
     
     public Role(String name) {
@@ -34,5 +34,5 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }
