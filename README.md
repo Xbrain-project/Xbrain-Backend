@@ -1,7 +1,7 @@
 # Xbrain-Backend
 Colons can be used to align columns.
 
-| Tables        | Are           | Cool  |
+| Methods        | Urls           | Actions  |
 | ------------- |:-------------:| -----:|
 | col 3 is      | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
