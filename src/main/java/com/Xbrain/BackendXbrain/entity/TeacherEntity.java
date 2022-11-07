@@ -14,10 +14,23 @@ import javax.persistence.*;
 public class TeacherEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long teacher_id ;
     private String name ;
     private String email ;
+
+
+    @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private TeacherPostEntity teacherPostEntity ;
+
+    public TeacherPostEntity getTeacherPostEntity() {
+        return teacherPostEntity;
+    }
+
+    public void setTeacherPostEntity(TeacherPostEntity teacherPostEntity) {
+        this.teacherPostEntity = teacherPostEntity;
+    }
 
     public Long getTeacher_id() {
         return teacher_id;

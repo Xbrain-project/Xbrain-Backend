@@ -3,17 +3,19 @@ package com.Xbrain.BackendXbrain.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Table(name = "teacher_posts_xxx")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @ToString
 
 public class TeacherPostEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long post_id ;
     private String description ;
     private String openCourse;
@@ -22,9 +24,7 @@ public class TeacherPostEntity {
     private String freeTime ;
     private Boolean allowshow ;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id")
-    private TeacherEntity teacherEntity ;
+
 
     public Long getPost_id() {
         return post_id;
@@ -82,11 +82,6 @@ public class TeacherPostEntity {
         this.allowshow = allowshow;
     }
 
-    public TeacherEntity getTeacherEntity() {
-        return teacherEntity;
-    }
 
-    public void setTeacherEntity(TeacherEntity teacherEntity) {
-        this.teacherEntity = teacherEntity;
-    }
+
 }
