@@ -2,15 +2,19 @@ package com.Xbrain.BackendXbrain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
-@Table(name = "teachers_test")
+@Table(name = "teachers")
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class TeacherEntity {
 
     @Id
@@ -19,40 +23,10 @@ public class TeacherEntity {
     private String name ;
     private String email ;
 
-
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private TeacherPostEntity teacherPostEntity ;
 
-    public TeacherPostEntity getTeacherPostEntity() {
-        return teacherPostEntity;
-    }
 
-    public void setTeacherPostEntity(TeacherPostEntity teacherPostEntity) {
-        this.teacherPostEntity = teacherPostEntity;
-    }
 
-    public Long getTeacher_id() {
-        return teacher_id;
-    }
-
-    public void setTeacher_id(Long teacher_id) {
-        this.teacher_id = teacher_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

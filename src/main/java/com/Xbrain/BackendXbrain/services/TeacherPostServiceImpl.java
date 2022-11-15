@@ -7,7 +7,9 @@ import com.Xbrain.BackendXbrain.repository.TeacherPostRepository;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,15 +26,21 @@ public class TeacherPostServiceImpl implements TeacherPostService {
 
     @Override
     public TeacherPostEntity addTeacherPost(TeacherPostRequest request ) {
+
+        Calendar calendar = Calendar.getInstance() ;
+
         TeacherEntity teacherOwner = request.getTeacherEntity();
         TeacherPostEntity teacherPost = request.getTeacherPostEntity() ;
 
-        TeacherPostEntity temp_post = teacherPostRepository.save(teacherPost);
+        TeacherPostEntity temp_post  = teacherPost ;
+        temp_post.setCreateDate(new Timestamp(calendar.getTimeInMillis()));
+        teacherPostRepository.save(temp_post) ;
 
         Optional<TeacherEntity> teacherFromDb = teacherRepository.findById(teacherOwner.getTeacher_id()) ;
         if (teacherFromDb.isPresent()){
             TeacherEntity temp_teacher = teacherFromDb.get() ;
             temp_teacher.setTeacherPostEntity(temp_post);
+
             teacherRepository.save(temp_teacher);
             return temp_post ;
         }
@@ -56,9 +64,11 @@ public class TeacherPostServiceImpl implements TeacherPostService {
 
                 fixPost.setDescription(teacherPost.getDescription());
                 fixPost.setOpenCourse(teacherPost.getOpenCourse());
-                fixPost.setReviewScore(teacherPost.getReviewScore());
-                fixPost.setPrice(teacherPost.getPrice());
+                fixPost.setStudentClass(teacherPost.getStudentClass());
+                fixPost.setTeachType(teacherPost.getTeachType());
+                fixPost.setPlace(teacherPost.getPlace());
                 fixPost.setFreeTime(teacherPost.getFreeTime());
+                fixPost.setPrice(teacherPost.getPrice());
 
                 teacherPostRepository.save(fixPost);
                 return fixPost;
@@ -88,16 +98,21 @@ public class TeacherPostServiceImpl implements TeacherPostService {
                         TeacherPostEntity.builder()
                                 .post_id(postEntity.getPost_id())
                                 .description(postEntity.getDescription())
+                                .studentClass(postEntity.getStudentClass())
+                                .teachType(postEntity.getTeachType())
+                                .place(postEntity.getPlace())
                                 .price(postEntity.getPrice())
                                 .freeTime(postEntity.getFreeTime())
                                 .openCourse(postEntity.getOpenCourse())
                                 .allowshow(postEntity.getAllowshow())
-                                .reviewScore(postEntity.getReviewScore())
+                                .createDate(postEntity.getCreateDate())
                                 .build()
                 ).collect(Collectors.toList());
 
         return teacherPosts;
     }
+
+
 
 
 //    @Override

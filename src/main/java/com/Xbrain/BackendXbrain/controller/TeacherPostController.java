@@ -7,6 +7,7 @@ import com.Xbrain.BackendXbrain.repository.TeacherPostRepository;
 import com.Xbrain.BackendXbrain.services.TeacherPostService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +48,11 @@ public class TeacherPostController {
     @GetMapping("/getAllTeacherPost")
     public List<TeacherPostEntity> getAllTeacherPost() {
         return teacherPostService.getAllTeacherPost() ;
+    }
+
+    @GetMapping("/getByDesc")
+    public List<TeacherPostEntity> getByDesc(@RequestParam("post_id") String post_id){
+        return teacherPostRepository.searchByDescTeacherPost(post_id) ;
     }
 
 }

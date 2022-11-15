@@ -1,13 +1,17 @@
 package com.Xbrain.BackendXbrain.controller;
 
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
+import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
 import com.Xbrain.BackendXbrain.services.TeacherService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @Component
@@ -44,6 +48,11 @@ public class TeacherController {
     @GetMapping("/getTeacherById/{teacherId}")
     public  TeacherEntity getTeacherById(@PathVariable("teacherId") Long teacherId){
         return teacherService.findById(teacherId);
+    }
+
+    @GetMapping("/testget")
+    public List<TeacherEntity> testGet(){
+        return  teacherRepository.findAll() ;
     }
 }
 
