@@ -28,6 +28,7 @@ public class TeacherPostEntity {
     private List<String> openCourse;
     @ElementCollection
     @CollectionTable(name = "teacherpost_studentclasses")
+
     private List<String> studentClass ;
     @ElementCollection
     @CollectionTable(name = "teacherpost_teachtypes")
@@ -38,6 +39,14 @@ public class TeacherPostEntity {
     @ElementCollection
     @CollectionTable(name = "teacherpost_freetimes")
     private List<String> freeTime;
+
+    private String openCoursesX;
+    private String studentClassesX ;
+    private String teachTypesX ;
+    private String placesX ;
+    private String freeTimesX;
+
+
 
     private String price ;
     private Boolean allowshow ;

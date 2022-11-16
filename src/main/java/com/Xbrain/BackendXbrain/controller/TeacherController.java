@@ -2,6 +2,7 @@ package com.Xbrain.BackendXbrain.controller;
 
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
+import com.Xbrain.BackendXbrain.exception.UserException;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
 import com.Xbrain.BackendXbrain.services.TeacherService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -46,7 +47,7 @@ public class TeacherController {
     }
 
     @GetMapping("/getTeacherById/{teacherId}")
-    public  TeacherEntity getTeacherById(@PathVariable("teacherId") Long teacherId){
+    public  TeacherEntity getTeacherById(@PathVariable("teacherId") Long teacherId) throws UserException {
         return teacherService.findById(teacherId);
     }
 

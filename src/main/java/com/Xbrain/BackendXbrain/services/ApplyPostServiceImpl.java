@@ -51,7 +51,7 @@ public class ApplyPostServiceImpl implements ApplyPostService{
         Optional<StudentEntity> student = studentRepository.findById(student_id);
 
         if(post.isPresent() && student.isPresent()) {
-            temp_apply.setTeacherPostEntity(post.get());
+                temp_apply.setTeacherPostEntity(post.get());
                 temp_apply.setStudentEntity(student.get());
                 temp_apply.setStatus("waiting");
                 temp_apply.setApplyDate(new Timestamp(calendar.getTimeInMillis()));
@@ -70,22 +70,19 @@ public class ApplyPostServiceImpl implements ApplyPostService{
         return null ;
     }
 
-
-
     @Override
-
     public List<ApplyPostEntity> getApplyPosts(String post_id) {
-
         List<ApplyPostEntity> applyPostEntities = applyPostRepostity.getTeacherApplyPost(post_id);
         List<ApplyPostEntity> applies = new ArrayList<>();
         applies = applyPostEntities.stream()
                 .map((applyPostEntity) ->
                         ApplyPostEntity.builder()
                                 .apply_id(applyPostEntity.getApply_id())
+                                .status(applyPostEntity.getStatus())
+                                .applyDate(applyPostEntity.getApplyDate())
                                 .build()
                 ).collect(Collectors.toList());
         return applies;
-
 
     }
 

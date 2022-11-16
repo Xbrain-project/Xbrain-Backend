@@ -15,6 +15,9 @@ public interface TeacherPostService {
     TeacherPostEntity findById(Long postId);
 
     List<TeacherPostEntity> getAllTeacherPost() ;
+
+    List<TeacherPostEntity>searchTeacherPosts(TeacherPostEntity searchEntity) ;
+
 //    List<TeacherPost> searchByIdTeacherPost(Long query);
 //    TeacherPost searchByIdTeacherPost(String postID);
 //    TeacherPost createTeacherPost(TeacherPost teacherPost);

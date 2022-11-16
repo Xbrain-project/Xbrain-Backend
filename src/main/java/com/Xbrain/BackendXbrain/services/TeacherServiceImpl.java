@@ -1,9 +1,12 @@
 package com.Xbrain.BackendXbrain.services;
 
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
+import com.Xbrain.BackendXbrain.exception.BaseException;
+import com.Xbrain.BackendXbrain.exception.UserException;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -68,10 +71,15 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
-    public TeacherEntity findById(Long teacherId) {
+    public TeacherEntity findById(Long teacherId) throws UserException {
+
         Optional<TeacherEntity> teacher = teacherRepository.findById(teacherId);
-        TeacherEntity temp_teacher = teacher.get() ;
-        return temp_teacher ;
+        if(teacher.isPresent()){
+            TeacherEntity temp_teacher = teacher.get() ;
+            return temp_teacher ;
+        }else {
+            throw  UserException.userNotFound() ;
+        }
     }
 
 

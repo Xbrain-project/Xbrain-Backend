@@ -1,5 +1,6 @@
 package com.Xbrain.BackendXbrain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class TeacherEntity {
 
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private TeacherPostEntity teacherPostEntity ;
 
 

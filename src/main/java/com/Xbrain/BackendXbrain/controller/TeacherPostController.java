@@ -50,9 +50,9 @@ public class TeacherPostController {
         return teacherPostService.getAllTeacherPost() ;
     }
 
-    @GetMapping("/getByDesc")
-    public List<TeacherPostEntity> getByDesc(@RequestParam("post_id") String post_id){
-        return teacherPostRepository.searchByDescTeacherPost(post_id) ;
+    @GetMapping("/search")
+    public List<TeacherPostEntity> search(@RequestBody TeacherPostEntity searchEntity ){
+    return teacherPostService.searchTeacherPosts(searchEntity) ;
     }
 
 }

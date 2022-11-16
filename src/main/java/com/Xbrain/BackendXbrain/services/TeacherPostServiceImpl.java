@@ -8,10 +8,7 @@ import com.Xbrain.BackendXbrain.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +21,32 @@ public class TeacherPostServiceImpl implements TeacherPostService {
         this.teacherRepository  = teacherRepository;
     }
 
+    public String listToString(List<String> list) {
+        List<String> stringList = list ;
+        String result = stringList.stream()
+                .map(n -> String.valueOf(n))
+                .collect(Collectors.joining(",")) ;
+        return  result;
+    }
+
+    public String listToQuery(List<String> list) {
+//        "." in REGEXP sql mean -> Any single character
+        if (list.size() == 0 || list.equals(null) ) {
+            String result = "." ;
+            return result ;
+        } else {
+        List<String> stringList = list ;
+        String result = stringList.stream()
+                .map(n -> String.valueOf(n))
+                .collect(Collectors.joining("|")) ;
+        System.out.println(result);
+        return  result;
+
+        }
+    }
+
+
+
     @Override
     public TeacherPostEntity addTeacherPost(TeacherPostRequest request ) {
 
@@ -34,6 +57,13 @@ public class TeacherPostServiceImpl implements TeacherPostService {
 
         TeacherPostEntity temp_post  = teacherPost ;
         temp_post.setCreateDate(new Timestamp(calendar.getTimeInMillis()));
+
+        temp_post.setOpenCoursesX(listToString(teacherPost.getOpenCourse()));
+        temp_post.setStudentClassesX(listToString(teacherPost.getStudentClass()));
+        temp_post.setTeachTypesX(listToString(teacherPost.getTeachType()));
+        temp_post.setPlacesX(listToString(teacherPost.getPlace()));
+        temp_post.setFreeTimesX(listToString(teacherPost.getFreeTime()));
+
         teacherPostRepository.save(temp_post) ;
 
         Optional<TeacherEntity> teacherFromDb = teacherRepository.findById(teacherOwner.getTeacher_id()) ;
@@ -112,7 +142,16 @@ public class TeacherPostServiceImpl implements TeacherPostService {
         return teacherPosts;
     }
 
+    @Override
+    public List<TeacherPostEntity> searchTeacherPosts(TeacherPostEntity searchEntity) {
 
+        String courses = listToQuery(searchEntity.getOpenCourse() );
+        String places = listToQuery(searchEntity.getPlace() );
+        String classes = listToQuery(searchEntity.getStudentClass() );
+        String types = listToQuery(searchEntity.getTeachType() );
+
+        return teacherPostRepository.searchTeacherPosts_courses( courses ,  places ,  classes ,  types );
+    }
 
 
 //    @Override
