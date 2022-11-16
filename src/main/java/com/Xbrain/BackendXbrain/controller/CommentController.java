@@ -17,8 +17,6 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class CommentController {
 
-
-
     private final CommentService commentService;
 
     public CommentController(CommentService commentService) {
