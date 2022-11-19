@@ -8,17 +8,10 @@ import com.Xbrain.BackendXbrain.mapper.CommentMapper;
 import com.Xbrain.BackendXbrain.services.CommentService;
 import org.springframework.stereotype.Service;
 
-
-
-
-
 @Service
 public class CommentBusiness {
-
-
     private final CommentService commentService;
     private final CommentMapper commentMapper;
-
 
     public CommentBusiness(CommentService commentService, CommentMapper commentMapper) {
         this.commentService = commentService;
@@ -26,7 +19,6 @@ public class CommentBusiness {
     }
 
     public CommentResponse create(String postId, CommentRequest request) throws BaseException {
-
         CommentEntity comment = commentService.create(request.getContent(),postId, request.getEmail());
 
         return commentMapper.toCommentResponse(comment,comment.getUserEntity());

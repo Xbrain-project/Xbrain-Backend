@@ -73,9 +73,10 @@ public class PostService {
         return posts;
     }
 
-    public ResponseEntity<Optional<PostEntity>> getPostById(String id) {
-        Optional<PostEntity> postEntity = postRepository.findById(id);
-        return  ResponseEntity.ok(postEntity);
+    public PostEntity getPostById(String id) {
+        Optional<PostEntity> postById = postRepository.findById(id);
+        PostEntity post = postById.get();
+        return post;
     }
 
 //    public ResponseEntity<HttpStatus> deletePost(String id) {

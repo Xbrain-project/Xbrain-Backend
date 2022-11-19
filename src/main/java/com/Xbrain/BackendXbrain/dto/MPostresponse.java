@@ -6,8 +6,7 @@ import lombok.Data;
 @Data
 public class MPostresponse {
     private String title;
-    private UserEntity userEntity;
-
-
+    private String content;
+    private String username;
 }
 

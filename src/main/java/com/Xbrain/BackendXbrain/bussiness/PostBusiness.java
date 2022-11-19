@@ -22,21 +22,17 @@ public class PostBusiness {
         this.postService = postService;
     }
 
-
     public MPostresponse create(PostEntity request, Long userId) throws BaseException {
-
         PostEntity post = postService.addPost(userId,request.getContent(),request.getTitle());
-
-        return postMapper.toPostResponse(post);
+        return postMapper.toPostResponse(post,post.getUserEntity());
     }
 
-//    public String getPostById(String id) {
-//        //get data from DB
-//
-//
-//        return id;
-//
-//    }
+    public MPostresponse getPostById(String postId) {
+       PostEntity post = postService.getPostById(postId);
+
+        return postMapper.toPostResponse(post,post.getUserEntity());
+
+    }
 
 
 //    public String uploadProfilePicture(MultipartFile file) throws BaseException {

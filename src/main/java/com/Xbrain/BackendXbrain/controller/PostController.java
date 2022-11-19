@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api")
@@ -35,11 +37,11 @@ public class PostController {
 //        return new ResponseEntity<>(allPosts, HttpStatus.OK);
 //    }
 
-//    @GetMapping("/posts/{id}")
-//    public ResponseEntity<Optional<PostEntity>> getPostById(@PathVariable String id) {
-//        ResponseEntity<Optional<PostEntity>> postById = postService.getPostById(id);
-//        return postById;
-//    }
+    @GetMapping("/posts/{id}")
+    public ResponseEntity<MPostresponse> getPostById(@PathVariable String id) {
+        MPostresponse response  = postBusiness.getPostById(id);
+        return ResponseEntity.ok(response);
+    }
 
 //    @DeleteMapping("/posts/{id}")
 //    public ResponseEntity<HttpStatus> deletePost(@PathVariable String id) {
