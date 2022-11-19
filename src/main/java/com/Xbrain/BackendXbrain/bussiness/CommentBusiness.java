@@ -2,6 +2,7 @@ package com.Xbrain.BackendXbrain.bussiness;
 
 import com.Xbrain.BackendXbrain.dto.CommentRequest;
 import com.Xbrain.BackendXbrain.dto.CommentResponse;
+import com.Xbrain.BackendXbrain.dto.Comments;
 import com.Xbrain.BackendXbrain.entity.CommentEntity;
 import com.Xbrain.BackendXbrain.exception.BaseException;
 import com.Xbrain.BackendXbrain.mapper.CommentMapper;
@@ -20,8 +21,17 @@ public class CommentBusiness {
 
     public CommentResponse create(String postId, CommentRequest request) throws BaseException {
         CommentEntity comment = commentService.create(request.getContent(),postId, request.getEmail());
-
         return commentMapper.toCommentResponse(comment,comment.getUserEntity());
     }
+
+    public CommentResponse getCommentById(String commentId) {
+        CommentEntity comment = commentService.getCommentById(commentId);
+        return commentMapper.toCommentResponse(comment,comment.getUserEntity());
+    }
+
+//    public Comments getAllCommentsbyId(String postId) {
+//        CommentEntity allCommentsByPostId = commentService.getAllCommentsByPostId(postId);
+//        return commentMapper.toComments(allCommentsByPostId);
+//    }
 
 }

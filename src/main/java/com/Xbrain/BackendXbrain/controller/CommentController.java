@@ -1,8 +1,4 @@
 package com.Xbrain.BackendXbrain.controller;
-
-
-
-
 import com.Xbrain.BackendXbrain.bussiness.CommentBusiness;
 import com.Xbrain.BackendXbrain.dto.CommentRequest;
 import com.Xbrain.BackendXbrain.dto.CommentResponse;
@@ -14,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -37,15 +32,15 @@ public class CommentController {
     }
 
     @GetMapping("/comments/{id}")
-    public ResponseEntity<Optional<CommentEntity>> getCommentById(@PathVariable String id) {
-        ResponseEntity<Optional<CommentEntity>> postById = commentService.getCommentById(id);
-        return postById;
+    public ResponseEntity<CommentResponse> getCommentById(@PathVariable String id) {
+        CommentResponse response = commentBusiness.getCommentById(id);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/posts/{postId}/comments")
-    public ResponseEntity<List<CommentEntity>> getAllCommentsByPostId(@PathVariable(value = "postId") String postId) {
-        List<CommentEntity> comments = commentService.getAllCommentsByPostId(postId);
-        return new ResponseEntity<>(comments, HttpStatus.OK);
+    public List<CommentEntity> getAllCommentsByPostId(@PathVariable(value = "postId") String postId) {
+        List<CommentEntity> response = commentService.getAllCommentsByPostId(postId);
+        return response;
     }
 
     @DeleteMapping("/comments/{id}")

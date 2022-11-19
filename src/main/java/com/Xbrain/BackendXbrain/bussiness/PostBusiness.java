@@ -8,6 +8,7 @@ import com.Xbrain.BackendXbrain.services.PostService;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,7 +32,6 @@ public class PostBusiness {
        PostEntity post = postService.getPostById(postId);
 
         return postMapper.toPostResponse(post,post.getUserEntity());
-
     }
 
 

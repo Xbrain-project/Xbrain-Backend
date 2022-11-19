@@ -30,7 +30,6 @@ public class PostEntity {
     @Column(nullable = false, updatable = false)
     public String id;
 
-
     private String title;
 
     @Lob

@@ -1,6 +1,5 @@
 package com.Xbrain.BackendXbrain.services;
 
-import com.Xbrain.BackendXbrain.dto.CommentResponse;
 import com.Xbrain.BackendXbrain.entity.CommentEntity;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 import com.Xbrain.BackendXbrain.entity.UserEntity;
@@ -42,9 +41,10 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public ResponseEntity<Optional<CommentEntity>> getCommentById(String id) {
-        Optional<CommentEntity> commentEntity = commentRepository.findById(id);
-        return  ResponseEntity.ok(commentEntity);
+    public CommentEntity getCommentById(String id) {
+        Optional<CommentEntity> commentById = commentRepository.findById(id);
+        CommentEntity comment = commentById.get();
+        return comment;
     }
 
     public List<CommentEntity> getAllCommentsByPostId(String postId) {
@@ -56,8 +56,6 @@ public class CommentService {
 
         return comments;
     }
-
-
 
     public ResponseEntity<HttpStatus> deleteComment(String id) {
         commentRepository.deleteById(id);

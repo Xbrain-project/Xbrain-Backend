@@ -37,7 +37,6 @@ public class CommentEntity {
 //    @JsonIgnore
     private UserEntity userEntity;
 
-
     @Lob
     private String content;
 

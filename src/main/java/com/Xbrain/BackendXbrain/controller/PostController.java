@@ -6,9 +6,11 @@ import com.Xbrain.BackendXbrain.entity.PostEntity;
 import com.Xbrain.BackendXbrain.exception.BaseException;
 import com.Xbrain.BackendXbrain.services.PostService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin("http://localhost:3000")
@@ -30,12 +32,12 @@ public class PostController {
         return ResponseEntity.ok(response);
     }
 
-//    @GetMapping("/posts")
-//    public ResponseEntity<List<PostEntity>> getPosts(@RequestParam(required = false) String title) {
-//        List<PostEntity> allPosts = postService.getAllPosts();
-//
-//        return new ResponseEntity<>(allPosts, HttpStatus.OK);
-//    }
+    @GetMapping("/posts")
+    public ResponseEntity<List<PostEntity>> getPosts(@RequestParam(required = false) String title) {
+        List<PostEntity> allPosts = postService.getAllPosts();
+
+        return new ResponseEntity<>(allPosts, HttpStatus.OK);
+    }
 
     @GetMapping("/posts/{id}")
     public ResponseEntity<MPostresponse> getPostById(@PathVariable String id) {

@@ -17,5 +17,4 @@ public interface PostMapper {
 
     MPostresponse toPostResponse(PostEntity post, UserEntity user);
 
-    CommentRequest toCommentRequest(CommentEntity comment);
 }
