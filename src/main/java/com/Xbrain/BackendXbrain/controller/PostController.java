@@ -1,52 +1,52 @@
 package com.Xbrain.BackendXbrain.controller;
 
+import com.Xbrain.BackendXbrain.bussiness.PostBusiness;
+import com.Xbrain.BackendXbrain.dto.MPostresponse;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
+import com.Xbrain.BackendXbrain.exception.BaseException;
 import com.Xbrain.BackendXbrain.services.PostService;
-import org.springframework.http.HttpStatus;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class PostController {
 
+    private final PostBusiness postBusiness;
     private final PostService postService;
 
-    public PostController(PostService postService) {
-
+    public PostController(PostBusiness postBusiness, PostService postService) {
+        this.postBusiness = postBusiness;
         this.postService = postService;
     }
 
     @PostMapping("/users/{userId}")
-    public ResponseEntity<Optional<Object>> addPost(@PathVariable(value = "userId") Long userId, @RequestBody PostEntity postEntity)  {
-        ResponseEntity<Optional<Object>> response =postService.addPost(userId,postEntity);
-
-        return response;
+    public ResponseEntity<MPostresponse> addPost(@PathVariable(value = "userId") Long userId, @RequestBody PostEntity postEntity) throws BaseException {
+        MPostresponse response = postBusiness.create(postEntity, userId);
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/posts")
-    public ResponseEntity<List<PostEntity>> getPosts(@RequestParam(required = false) String title) {
-        List<PostEntity> allPosts = postService.getAllPosts();
+//    @GetMapping("/posts")
+//    public ResponseEntity<List<PostEntity>> getPosts(@RequestParam(required = false) String title) {
+//        List<PostEntity> allPosts = postService.getAllPosts();
+//
+//        return new ResponseEntity<>(allPosts, HttpStatus.OK);
+//    }
 
-        return new ResponseEntity<>(allPosts, HttpStatus.OK);
-    }
+//    @GetMapping("/posts/{id}")
+//    public ResponseEntity<Optional<PostEntity>> getPostById(@PathVariable String id) {
+//        ResponseEntity<Optional<PostEntity>> postById = postService.getPostById(id);
+//        return postById;
+//    }
 
-    @GetMapping("/posts/{id}")
-    public ResponseEntity<Optional<PostEntity>> getPostById(@PathVariable Long id) {
-        ResponseEntity<Optional<PostEntity>> postById = postService.getPostById(id);
-        return postById;
-    }
-
-    @DeleteMapping("/posts/{id}")
-    public ResponseEntity<HttpStatus> deletePost(@PathVariable Long id) {
-        ResponseEntity<HttpStatus> response = postService.deletePost(id);
-
-        return response;
-    }
+//    @DeleteMapping("/posts/{id}")
+//    public ResponseEntity<HttpStatus> deletePost(@PathVariable String id) {
+//        ResponseEntity<HttpStatus> response = postService.deletePost(id);
+//
+//        return response;
+//    }
 
 
 }

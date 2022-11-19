@@ -3,10 +3,13 @@ package com.Xbrain.BackendXbrain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -17,20 +20,21 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class PostEntity{
+public class PostEntity {
 
-//    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
+
+    //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_generator")
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_generator")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     @Column(nullable = false, updatable = false)
-    private Long id;
+    public String id;
 
 
     private String title;
 
     @Lob
-    private String content;
+    public String content;
 
     // FetchType.EAGER คือการ fetch ข้อมูล user ที่สร้างโพสขึ้นมาด้วย
     //@ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -41,14 +45,14 @@ public class PostEntity{
     @JsonIgnore
     private UserEntity userEntity;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timestamp;
+    @CreationTimestamp
+    private LocalDateTime dataCreated;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -77,11 +81,13 @@ public class PostEntity{
         this.userEntity = userEntity;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public LocalDateTime getDataCreated() {
+        return dataCreated;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setDataCreated(LocalDateTime dataCreated) {
+        this.dataCreated = dataCreated;
     }
+
 }
+

@@ -3,7 +3,11 @@ package com.Xbrain.BackendXbrain.controller;
 
 
 
+import com.Xbrain.BackendXbrain.bussiness.CommentBusiness;
+import com.Xbrain.BackendXbrain.dto.CommentRequest;
+import com.Xbrain.BackendXbrain.dto.CommentResponse;
 import com.Xbrain.BackendXbrain.entity.CommentEntity;
+import com.Xbrain.BackendXbrain.exception.BaseException;
 import com.Xbrain.BackendXbrain.services.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,36 +19,37 @@ import java.util.Optional;
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api")
+
 public class CommentController {
 
+    private final CommentBusiness commentBusiness;
     private final CommentService commentService;
 
-    public CommentController(CommentService commentService) {
+    public CommentController(CommentBusiness commentBusiness, CommentService commentService) {
+        this.commentBusiness = commentBusiness;
         this.commentService = commentService;
     }
 
-
     @PostMapping("/posts/{postId}/comments")
-    public ResponseEntity<Optional<Object>> createComment(@PathVariable(value = "postId") Long postId, @RequestBody CommentEntity comment)  {
-        ResponseEntity<Optional<Object>> response =commentService.create(postId,comment);
-
-        return response;
+    public ResponseEntity<CommentResponse> createComment(@PathVariable(value = "postId") String postId, @RequestBody CommentRequest request) throws BaseException {
+        CommentResponse response =commentBusiness.create(postId,request);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/comments/{id}")
-    public ResponseEntity<Optional<CommentEntity>> getCommentById(@PathVariable Long id) {
+    public ResponseEntity<Optional<CommentEntity>> getCommentById(@PathVariable String id) {
         ResponseEntity<Optional<CommentEntity>> postById = commentService.getCommentById(id);
         return postById;
     }
 
     @GetMapping("/posts/{postId}/comments")
-    public ResponseEntity<List<CommentEntity>> getAllCommentsByPostId(@PathVariable(value = "postId") Long postId) {
+    public ResponseEntity<List<CommentEntity>> getAllCommentsByPostId(@PathVariable(value = "postId") String postId) {
         List<CommentEntity> comments = commentService.getAllCommentsByPostId(postId);
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
     @DeleteMapping("/comments/{id}")
-    public ResponseEntity<HttpStatus> deleteComment(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable String id) {
         ResponseEntity<HttpStatus> response = commentService.deleteComment(id);
 
         return response;

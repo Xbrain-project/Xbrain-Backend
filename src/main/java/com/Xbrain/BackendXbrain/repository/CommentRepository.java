@@ -10,10 +10,10 @@ import java.util.Optional;
 
 
 @Repository
-public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
+public interface CommentRepository extends JpaRepository<CommentEntity, String> {
 
       // find comment by postID
-      List<CommentEntity> findByPostEntityId(Long postId);
+      List<CommentEntity> findByPostEntityId(String postId);
 
     @Transactional
     void deleteByPostEntityId(long postId);

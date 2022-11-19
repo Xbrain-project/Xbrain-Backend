@@ -7,9 +7,6 @@ import javax.transaction.Transactional;
 
 
 @Repository
-public interface PostRepository extends JpaRepository<PostEntity, Long> {
-
-
-
+public interface PostRepository extends JpaRepository<PostEntity, String> {
 
 }

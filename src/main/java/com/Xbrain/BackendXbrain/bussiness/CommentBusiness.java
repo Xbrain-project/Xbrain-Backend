@@ -1,0 +1,35 @@
+package com.Xbrain.BackendXbrain.bussiness;
+
+import com.Xbrain.BackendXbrain.dto.CommentRequest;
+import com.Xbrain.BackendXbrain.dto.CommentResponse;
+import com.Xbrain.BackendXbrain.entity.CommentEntity;
+import com.Xbrain.BackendXbrain.exception.BaseException;
+import com.Xbrain.BackendXbrain.mapper.CommentMapper;
+import com.Xbrain.BackendXbrain.services.CommentService;
+import org.springframework.stereotype.Service;
+
+
+
+
+
+@Service
+public class CommentBusiness {
+
+
+    private final CommentService commentService;
+    private final CommentMapper commentMapper;
+
+
+    public CommentBusiness(CommentService commentService, CommentMapper commentMapper) {
+        this.commentService = commentService;
+        this.commentMapper = commentMapper;
+    }
+
+    public CommentResponse create(String postId, CommentRequest request) throws BaseException {
+
+        CommentEntity comment = commentService.create(request.getContent(),postId, request.getEmail());
+
+        return commentMapper.toCommentResponse(comment,comment.getUserEntity());
+    }
+
+}
