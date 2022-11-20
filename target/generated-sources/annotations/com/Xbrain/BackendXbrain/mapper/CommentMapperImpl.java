@@ -5,12 +5,14 @@ import com.Xbrain.BackendXbrain.dto.CommentResponse;
 import com.Xbrain.BackendXbrain.entity.CommentEntity;
 import com.Xbrain.BackendXbrain.entity.UserEntity;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-20T00:53:23+0700",
+    date = "2022-11-21T04:59:59+0700",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
 )
 @Component
@@ -48,5 +50,19 @@ public class CommentMapperImpl implements CommentMapper {
         }
 
         return commentResponse;
+    }
+
+    @Override
+    public List<CommentEntity> toComments(List<CommentEntity> value) {
+        if ( value == null ) {
+            return null;
+        }
+
+        List<CommentEntity> list = new ArrayList<CommentEntity>( value.size() );
+        for ( CommentEntity commentEntity : value ) {
+            list.add( commentEntity );
+        }
+
+        return list;
     }
 }

@@ -3,7 +3,7 @@ package com.Xbrain.BackendXbrain.controller;
 
 import com.Xbrain.BackendXbrain.entity.UserEntity;
 import com.Xbrain.BackendXbrain.exception.BaseException;
-import com.Xbrain.BackendXbrain.services.UserService;
+import com.Xbrain.BackendXbrain.services.UserServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("http://localhost:3000")
@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userServiceImpl) {
 
-        this.userService = userService;
+        this.userServiceImpl = userServiceImpl;
     }
 
     @PostMapping("/users")
     public UserEntity addUser(@RequestBody UserEntity user) throws BaseException {
 
 
-        return userService.create(user);
+        return userServiceImpl.create(user);
     }
 
 //    @GetMapping("/{id}")

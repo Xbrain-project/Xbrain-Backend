@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.entity;
 
 
+import com.Xbrain.BackendXbrain.services.BaseService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,7 +11,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 
 @Entity
@@ -20,10 +20,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class PostEntity {
+public class PostEntity implements BaseService{
 
-
-    //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_generator")
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
@@ -88,5 +86,11 @@ public class PostEntity {
         this.dataCreated = dataCreated;
     }
 
+
+    // factory concrete product A
+    @Override
+    public void save(Object entity){
+
+    }
 }
 

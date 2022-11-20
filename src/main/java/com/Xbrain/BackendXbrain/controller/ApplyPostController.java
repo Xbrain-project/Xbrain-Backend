@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ApplyPostController {
-    ApplyPostService applyPostService ;
+    ApplyPostService applyPostService;
 
     public ApplyPostController(ApplyPostService applyPostService) {
         this.applyPostService = applyPostService;
     }
+
 
     @PostMapping(path = "/createApplyPost")
     ApplyPostEntity addApplyPost(@RequestBody ApplyPostEntity applyPost){

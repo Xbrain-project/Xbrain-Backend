@@ -3,10 +3,9 @@ package com.Xbrain.BackendXbrain.services;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 import com.Xbrain.BackendXbrain.entity.UserEntity;
 import com.Xbrain.BackendXbrain.exception.BaseException;
+
 import com.Xbrain.BackendXbrain.repository.PostRepository;
 import com.Xbrain.BackendXbrain.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,12 +15,12 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    @Autowired
-    UserRepository userRepository;
 
+    private final UserRepository userRepository;
     private final PostRepository postRepository;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(UserRepository userRepository, PostRepository postRepository) {
+        this.userRepository = userRepository;
         this.postRepository = postRepository;
     }
 
@@ -38,7 +37,6 @@ public class PostService {
 //
 //            return postRepository.save(postRequest);
 //        });
-
 
         Optional<UserEntity> user = userRepository.findById(userId);
 
@@ -74,10 +72,15 @@ public class PostService {
     }
 
     public PostEntity getPostById(String id) {
+
+
         Optional<PostEntity> postById = postRepository.findById(id);
         PostEntity post = postById.get();
         return post;
     }
+
+
+
 
 //    public ResponseEntity<HttpStatus> deletePost(String id) {
 //        postRepository.deleteById(id);

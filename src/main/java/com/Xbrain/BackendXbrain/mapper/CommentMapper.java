@@ -8,7 +8,6 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
 
@@ -17,7 +16,6 @@ public interface CommentMapper {
     CommentResponse toCommentResponse(CommentEntity comment,UserEntity user);
 
 //    Comments toComments(CommentEntity comment);
-//    List<CommentEntity> toComments(CommentEntity value);
-
+    List<CommentEntity> toComments(List<CommentEntity> value);
 
 }

@@ -8,12 +8,7 @@ import java.util.List;
 
 @Data
 public class Comments {
-
     private List<CommentEntity> comment;
-
-
-
-
-
+    private String name;
 }
 

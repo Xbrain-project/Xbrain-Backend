@@ -3,6 +3,8 @@ package com.Xbrain.BackendXbrain;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.persistence.*;
+
 @SpringBootApplication
 public class BackendBrainApplication {
 
@@ -10,4 +12,9 @@ public class BackendBrainApplication {
 		SpringApplication.run(BackendBrainApplication.class, args);
 	}
 
+//	EntityManagerFactory factory = Persistence.createEntityManagerFactory("application");
+//
+//	EntityManager entityManager = factory.createEntityManager();
+//
+//	EntityTransaction transaction = entityManager.getTransaction();
 }

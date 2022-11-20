@@ -2,29 +2,30 @@ package com.Xbrain.BackendXbrain.bussiness;
 
 import com.Xbrain.BackendXbrain.dto.MPostresponse;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
+import com.Xbrain.BackendXbrain.entity.UserEntity;
 import com.Xbrain.BackendXbrain.exception.BaseException;
 import com.Xbrain.BackendXbrain.mapper.PostMapper;
+import com.Xbrain.BackendXbrain.repository.UserRepository;
 import com.Xbrain.BackendXbrain.services.PostService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 
-public class PostBusiness {
+public class PostBusiness implements PostMapper {
 
     private final PostMapper postMapper;
-    private final PostService postService;
 
-    public PostBusiness(PostMapper postMapper, PostService postService) {
+
+    public PostBusiness(PostMapper postMapper, PostService postService, UserRepository userRepository) {
         this.postMapper = postMapper;
         this.postService = postService;
+
     }
+    private final PostService postService;
 
     public MPostresponse create(PostEntity request, Long userId) throws BaseException {
-        PostEntity post = postService.addPost(userId,request.getContent(),request.getTitle());
+
+        PostEntity post = postService.addPost(userId,request.getTitle(),request.getContent());
         return postMapper.toPostResponse(post,post.getUserEntity());
     }
 
@@ -32,6 +33,11 @@ public class PostBusiness {
        PostEntity post = postService.getPostById(postId);
 
         return postMapper.toPostResponse(post,post.getUserEntity());
+    }
+
+    @Override
+    public MPostresponse toPostResponse(PostEntity post, UserEntity user) {
+        return null;
     }
 
 

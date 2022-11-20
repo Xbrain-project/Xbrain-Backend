@@ -2,12 +2,13 @@ package com.Xbrain.BackendXbrain.bussiness;
 
 import com.Xbrain.BackendXbrain.dto.CommentRequest;
 import com.Xbrain.BackendXbrain.dto.CommentResponse;
-import com.Xbrain.BackendXbrain.dto.Comments;
 import com.Xbrain.BackendXbrain.entity.CommentEntity;
 import com.Xbrain.BackendXbrain.exception.BaseException;
 import com.Xbrain.BackendXbrain.mapper.CommentMapper;
 import com.Xbrain.BackendXbrain.services.CommentService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CommentBusiness {
@@ -29,9 +30,9 @@ public class CommentBusiness {
         return commentMapper.toCommentResponse(comment,comment.getUserEntity());
     }
 
-//    public Comments getAllCommentsbyId(String postId) {
-//        CommentEntity allCommentsByPostId = commentService.getAllCommentsByPostId(postId);
-//        return commentMapper.toComments(allCommentsByPostId);
-//    }
+    public List<CommentEntity> getAllCommentsbyId(String postId) {
+        List<CommentEntity> allCommentsByPostId = commentService.getAllCommentsByPostId(postId);
+        return commentMapper.toComments(allCommentsByPostId);
+    }
 
 }
