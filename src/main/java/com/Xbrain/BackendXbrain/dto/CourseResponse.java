@@ -9,10 +9,15 @@
 //import lombok.Data;
 //import lombok.NoArgsConstructor;
 //
+//import javax.persistence.Id;
+//
 //@NoArgsConstructor
 //@AllArgsConstructor
 //@Data
 //@Builder
-//public class ApplyPostRequest {
-//   private ApplyPostEntity applyPost  ;
+//
+//public class CourseResponse {
+//
+//    private Long teacher_post_entity_post_id ;
+//    private String open_course ;
 //}

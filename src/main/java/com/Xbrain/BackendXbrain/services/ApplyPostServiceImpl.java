@@ -1,9 +1,9 @@
 package com.Xbrain.BackendXbrain.services;
 
 //import com.Xbrain.BackendXbrain.dto.ApplyPostRequest;
+import com.Xbrain.BackendXbrain.dto.ApplyPostResponse;
 import com.Xbrain.BackendXbrain.entity.ApplyPostEntity;
 import com.Xbrain.BackendXbrain.entity.StudentEntity;
-import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
 import com.Xbrain.BackendXbrain.repository.ApplyPostRepostity;
 import com.Xbrain.BackendXbrain.repository.StudentRepository;
@@ -71,9 +71,15 @@ public class ApplyPostServiceImpl implements ApplyPostService{
     }
 
     @Override
-    public List<ApplyPostEntity> getApplyPosts(String post_id) {
+    public ApplyPostResponse getApplyPosts(String post_id) {
+        Optional<TeacherPostEntity> teacherPost = teacherPostRepository.findById(Long.valueOf(post_id)) ;
+        TeacherPostEntity temp_teacherPost = teacherPost.get() ;
+
         List<ApplyPostEntity> applyPostEntities = applyPostRepostity.getTeacherApplyPost(post_id);
+
         List<ApplyPostEntity> applies = new ArrayList<>();
+
+
         applies = applyPostEntities.stream()
                 .map((applyPostEntity) ->
                         ApplyPostEntity.builder()
@@ -82,8 +88,14 @@ public class ApplyPostServiceImpl implements ApplyPostService{
                                 .applyDate(applyPostEntity.getApplyDate())
                                 .build()
                 ).collect(Collectors.toList());
-        return applies;
+
+        ApplyPostResponse applyPostResponse = new ApplyPostResponse( applies , temp_teacherPost );
+
+        return applyPostResponse ;
 
     }
+
+
+
 
 }

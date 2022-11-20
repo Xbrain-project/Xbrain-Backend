@@ -55,4 +55,13 @@ public class TeacherPostController {
     return teacherPostService.searchTeacherPosts(searchEntity) ;
     }
 
+    @GetMapping("/searchVer2")
+    public List<TeacherPostEntity> searchVerTwo(@RequestBody TeacherPostEntity searchEntity){
+        return teacherPostService.searchVerTwo(searchEntity) ;
+    }
+
+
+
+
+
 }

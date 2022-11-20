@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.controller;
 
 //import com.Xbrain.BackendXbrain.dto.ApplyPostRequest;
+import com.Xbrain.BackendXbrain.dto.ApplyPostResponse;
 import com.Xbrain.BackendXbrain.entity.ApplyPostEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.repository.ApplyPostRepostity;
@@ -31,7 +32,7 @@ public class ApplyPostController {
 //    fix this shit !!!!!!!
 
     @GetMapping(path = "/getTeacherApplyPost")
-    List<ApplyPostEntity> getTeacherApplyPost (@RequestParam("post_id") String post_id) {
+    ApplyPostResponse getTeacherApplyPost (@RequestParam("post_id") String post_id) {
 //        return  applyPostRepostity.getTeacherApplyPost(post_id);
         return applyPostService.getApplyPosts(post_id) ;
     }

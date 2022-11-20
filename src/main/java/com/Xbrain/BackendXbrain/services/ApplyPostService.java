@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.services;
 
 //import com.Xbrain.BackendXbrain.dto.ApplyPostRequest;
+import com.Xbrain.BackendXbrain.dto.ApplyPostResponse;
 import com.Xbrain.BackendXbrain.entity.ApplyPostEntity;
 import com.Xbrain.BackendXbrain.entity.StudentEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
@@ -14,5 +15,5 @@ public interface ApplyPostService {
 
     ApplyPostEntity updateApplyPost (ApplyPostEntity applyPost);
 
-    List<ApplyPostEntity> getApplyPosts(String post_id);
+    ApplyPostResponse getApplyPosts(String post_id);
 }

@@ -18,6 +18,8 @@ public interface TeacherPostService {
 
     List<TeacherPostEntity>searchTeacherPosts(TeacherPostEntity searchEntity) ;
 
+    List<TeacherPostEntity> searchVerTwo(TeacherPostEntity searchEntity);
+
 //    List<TeacherPost> searchByIdTeacherPost(Long query);
 //    TeacherPost searchByIdTeacherPost(String postID);
 //    TeacherPost createTeacherPost(TeacherPost teacherPost);

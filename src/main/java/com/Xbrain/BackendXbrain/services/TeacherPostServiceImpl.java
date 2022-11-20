@@ -7,6 +7,7 @@ import com.Xbrain.BackendXbrain.repository.TeacherPostRepository;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -150,7 +151,39 @@ public class TeacherPostServiceImpl implements TeacherPostService {
         String classes = listToQuery(searchEntity.getStudentClass() );
         String types = listToQuery(searchEntity.getTeachType() );
 
-        return teacherPostRepository.searchTeacherPosts_courses( courses ,  places ,  classes ,  types );
+        return teacherPostRepository.searchTeacherPosts( courses ,  places ,  classes ,  types );
+    }
+
+    @Override
+    public List<TeacherPostEntity> searchVerTwo(TeacherPostEntity searchEntity) {
+
+        String courses = listToString(searchEntity.getOpenCourse() );
+        String places = listToString(searchEntity.getPlace() );
+        String types = listToString(searchEntity.getTeachType());
+        String classes = listToString(searchEntity.getStudentClass()) ;
+
+        List<TeacherPostEntity> coursesFromDb = teacherPostRepository.searchFromCourses(courses);
+
+
+//            List<TeacherPostEntity> placesFromDb = teacherPostRepository.searchFromPlaces(places);
+//            List<TeacherPostEntity> typesFromDb = teacherPostRepository.searchFromTypes(types);
+//            List<TeacherPostEntity> classesFromDb = teacherPostRepository.searchFromClasses(classes);
+
+//        if(courses != null || courses.isEmpty() == false || courses.trim().isEmpty() == false){
+//            List<TeacherPostEntity> coursesFromDb = teacherPostRepository.searchFromCourses(courses);
+//        }
+//        if(places != null || places.isEmpty() == false || places.trim().isEmpty() == false){
+//            List<TeacherPostEntity> placesFromDb = teacherPostRepository.searchFromPlaces(places);
+//        }
+//        if(types != null || types.isEmpty() == false || types.trim().isEmpty() == false){
+//            List<TeacherPostEntity> typesFromDb = teacherPostRepository.searchFromTypes(types);
+//        }
+//        if(classes != null || classes.isEmpty() == false || classes.trim().isEmpty() == false){
+//            List<TeacherPostEntity> classesFromDb = teacherPostRepository.searchFromClasses(classes);
+//        }
+
+
+        return coursesFromDb;
     }
 
 
