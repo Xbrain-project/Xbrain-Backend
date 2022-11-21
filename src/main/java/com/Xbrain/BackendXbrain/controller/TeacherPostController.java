@@ -1,5 +1,7 @@
 package com.Xbrain.BackendXbrain.controller;
 
+import com.Xbrain.BackendXbrain.dto.SearchDTO;
+import com.Xbrain.BackendXbrain.dto.SearchRequestDTO;
 import com.Xbrain.BackendXbrain.dto.TeacherPostRequest;
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
@@ -51,8 +53,8 @@ public class TeacherPostController {
     }
 
     @GetMapping("/search")
-    public List<TeacherPostEntity> search(@RequestBody TeacherPostEntity searchEntity ){
-    return teacherPostService.searchTeacherPosts(searchEntity) ;
+    public List<SearchDTO> search(@RequestBody SearchRequestDTO searchRequestDTO ){
+    return teacherPostService.searchTeacherPosts(searchRequestDTO) ;
     }
 
     @GetMapping("/searchVer2")
@@ -60,6 +62,16 @@ public class TeacherPostController {
         return teacherPostService.searchVerTwo(searchEntity) ;
     }
 
+
+    @PutMapping("/updateAllowShow/{post_id}")
+    public TeacherPostEntity updateAllowShow(@PathVariable ("post_id") Long post_id , @RequestBody TeacherPostEntity request){
+        return teacherPostService.updateAllowShow(post_id ,  request) ;
+    }
+
+    @DeleteMapping("/deleteTeahcerPost/{post_id}")
+    public String deleteTeacherPost(@PathVariable ("post_id") Long post_id){
+        return teacherPostService.deleteTeacherPost(post_id) ;
+    }
 
 
 

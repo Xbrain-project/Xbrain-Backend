@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.repository;
 
 import com.Xbrain.BackendXbrain.entity.ApplyPostEntity;
+import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,6 +17,9 @@ public interface ApplyPostRepostity extends JpaRepository<ApplyPostEntity,Long> 
             nativeQuery = true)
     List<ApplyPostEntity> getTeacherApplyPost(String post_id) ;
 
+    @Query(value = "SELECT * FROM project.apply_posts a WHERE a.post_id = :post_id",
+            nativeQuery = true)
+    List<ApplyPostEntity> deleteTeacherPost (Long post_id);
 
 
 }

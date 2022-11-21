@@ -65,10 +65,17 @@ public class ApplyPostServiceImpl implements ApplyPostService{
 
     @Override
 //    for teacher to update
-    public ApplyPostEntity updateApplyPost(ApplyPostEntity applyPost) {
-        Long apply_id =  applyPost.getApply_id();
-        return null ;
+    public ApplyPostEntity updateStatusApplyPost(ApplyPostEntity applyPost , Long apply_id ) {
+        Optional<ApplyPostEntity> applyPostFromDb = applyPostRepostity.findById(apply_id) ;
+
+        ApplyPostEntity temp_apply = applyPostFromDb.get() ;
+        temp_apply.setStatus(applyPost.getStatus());
+
+
+//        return applyPostRepostity.save(temp_apply) ;
+        return temp_apply ;
     }
+
 
     @Override
     public ApplyPostResponse getApplyPosts(String post_id) {

@@ -25,7 +25,7 @@ public class TeacherController {
 
     }
 
-        @PostMapping(path = "/addTeacher")
+    @PostMapping(path = "/addTeacher")
     public TeacherEntity addTeacher(@RequestBody TeacherEntity teacherEntity ){
         return teacherService.addTeacher(teacherEntity);
 //        return  teacherService.addTeacher(teacherEntity);

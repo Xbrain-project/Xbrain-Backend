@@ -10,7 +10,10 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Data
+// what is DTO layer ? https://stackoverflow.com/questions/40858223/data-transfer-object-class-can-contain-other-objects
 public class ApplyPostResponse {
+
     private List<ApplyPostEntity> applyPostEntity ;
     private TeacherPostEntity teacherPostEntity ;
 

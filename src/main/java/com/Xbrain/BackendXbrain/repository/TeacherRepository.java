@@ -12,5 +12,10 @@ public interface TeacherRepository extends JpaRepository<TeacherEntity, Long> {
     @Query(value = "SELECT * FROM project.teachers a WHERE a.name = :name",
     nativeQuery = true)
     List<TeacherEntity> testGet(String name);
+
+    @Query(value = "SELECT * FROM project.teachers a WHERE a.post_id = :post_id",
+            nativeQuery = true)
+    TeacherEntity deleteTeacherPost (Long post_id);
+
 }
 

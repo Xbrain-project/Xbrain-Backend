@@ -13,7 +13,7 @@ import java.util.List;
 public interface ApplyPostService {
     ApplyPostEntity addApplyPost (ApplyPostEntity applyPost) ;
 
-    ApplyPostEntity updateApplyPost (ApplyPostEntity applyPost);
+    ApplyPostEntity updateStatusApplyPost (ApplyPostEntity applyPost , Long apply_id);
 
     ApplyPostResponse getApplyPosts(String post_id);
 }

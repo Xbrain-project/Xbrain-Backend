@@ -46,8 +46,6 @@ public class TeacherPostEntity {
     private String placesX ;
     private String freeTimesX;
 
-
-
     private String price ;
     private Boolean allowshow ;
     private Timestamp createDate ;

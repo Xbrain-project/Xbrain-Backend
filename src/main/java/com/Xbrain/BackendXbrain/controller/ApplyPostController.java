@@ -37,6 +37,11 @@ public class ApplyPostController {
         return applyPostService.getApplyPosts(post_id) ;
     }
 
+    @PutMapping(path = "/updateStatusApplyPost/{apply_id}")
+    ApplyPostEntity updateApplyPost(@RequestBody ApplyPostEntity updateApplyPost , @PathVariable("apply_id") Long apply_id ){
+
+        return applyPostService.updateStatusApplyPost(updateApplyPost , apply_id) ;
+    }
 
 
 
