@@ -1,8 +1,13 @@
 package com.Xbrain.BackendXbrain.services;
 
+import com.Xbrain.BackendXbrain.dto.UpdateTeacherReq;
+import com.Xbrain.BackendXbrain.dto.UserDTO;
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
+import com.Xbrain.BackendXbrain.entity.UserEntity;
 import com.Xbrain.BackendXbrain.exception.UserException;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -85,10 +90,26 @@ public class TeacherServiceImpl implements TeacherService{
         TeacherEntity byEmail = teacherRepository.findByEmailAndPassword(email,password);
 
         return byEmail;
+    }
 
+    public void updateUser(UpdateTeacherReq teacher, Long teacherId) {
+        Optional<TeacherEntity> byId = this.teacherRepository.findById(teacherId);
 
+        if(byId.isPresent()) {
+
+            byId.get().setName(teacher.getName());
+            byId.get().setEmail(teacher.getEmail());
+            byId.get().setNickname(teacher.getNickname());
+            byId.get().setSchool(teacher.getSchool());
+            byId.get().setPhone(teacher.getPhone());
+            byId.get().setLine(teacher.getLine());
+            byId.get().setSex(teacher.getSex());
+            byId.get().setStatus(teacher.getStatus());
+            byId.get().setIntro(teacher.getIntro());
+        }else
+            System.out.println("not");
+        TeacherEntity save = teacherRepository.save(byId.get());
 
     }
 
-
-}
+    }

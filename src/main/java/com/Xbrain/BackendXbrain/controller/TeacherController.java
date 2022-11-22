@@ -1,5 +1,7 @@
 package com.Xbrain.BackendXbrain.controller;
 
+import com.Xbrain.BackendXbrain.bussiness.TeacherBusiness;
+import com.Xbrain.BackendXbrain.dto.UpdateTeacherReq;
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.exception.UserException;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
@@ -12,13 +14,17 @@ import java.util.Optional;
 
 @RestController
 @Component
+@CrossOrigin
 public class TeacherController {
     TeacherService teacherService ;
     TeacherRepository teacherRepository ;
-    public TeacherController(TeacherService teacherService, TeacherRepository teacherRepository ) {
+
+    private final TeacherBusiness teacherBusiness;
+    public TeacherController(TeacherService teacherService, TeacherRepository teacherRepository, TeacherBusiness teacherBusiness) {
         this.teacherService = teacherService;
         this.teacherRepository = teacherRepository ;
 
+        this.teacherBusiness = teacherBusiness;
     }
 
     @PostMapping(path = "/addTeacher")
@@ -35,6 +41,12 @@ public class TeacherController {
     @PutMapping("/updatePostToOwner")
     public Optional<TeacherEntity> updatePostOwner(TeacherEntity owner) {
         return teacherService.updatePostOwner(owner) ;
+    }
+
+    @PutMapping("/updateTeacher")
+    public Optional<TeacherEntity> updateTeacher(@RequestBody UpdateTeacherReq teacher) {
+        teacherBusiness.update(teacher);
+        return null;
     }
 
     @GetMapping("/getAllTeachers")

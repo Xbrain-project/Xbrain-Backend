@@ -39,7 +39,7 @@ public class UserService {
             teacher.setEmail(userDTO.getEmail());
             teacher.setPassword(userDTO.getPassword());
             teacher.setNickname(userDTO.getNickname());
-            teacher.setNschool(userDTO.getNschool());
+            teacher.setSchool(userDTO.getSchool());
             teacher.setPhone(userDTO.getPhone());
             teacher.setLine(userDTO.getLine());
             teacher.setSex(userDTO.getSex());
@@ -54,7 +54,7 @@ public class UserService {
             student.setEmail(userDTO.getEmail());
             student.setPassword(userDTO.getPassword());
             student.setNickname(userDTO.getNickname());
-            student.setNschool(userDTO.getNschool());
+            student.setSchool(userDTO.getSchool());
             student.setPhone(userDTO.getPhone());
             student.setLine(userDTO.getLine());
             student.setGrade(userDTO.getGrade());
@@ -82,7 +82,7 @@ public class UserService {
         user1.setEmail(userDTO.getEmail());
         user1.setPassword(userDTO.getPassword());
         user1.setNickname(userDTO.getNickname());
-        user1.setNschool(userDTO.getNschool());
+        user1.setSchool(userDTO.getSchool());
         user1.setGrade(userDTO.getGrade());
         user1.setPhone(userDTO.getPhone());
         user1.setAddress(userDTO.getAddress());
@@ -137,7 +137,7 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setNickname(userDTO.getNickname());
-        user.setNschool(userDTO.getNschool());
+        user.setSchool(userDTO.getSchool());
         user.setGrade(userDTO.getGrade());
         user.setPhone(userDTO.getPhone());
         user.setAddress(userDTO.getAddress());
@@ -157,7 +157,7 @@ public class UserService {
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
         userDTO.setNickname(user.getNickname());
-        userDTO.setNschool(user.getNschool());
+        userDTO.setSchool(user.getSchool());
         userDTO.setGrade(user.getGrade());
         userDTO.setPhone(user.getPhone());
         userDTO.setAddress(user.getAddress());

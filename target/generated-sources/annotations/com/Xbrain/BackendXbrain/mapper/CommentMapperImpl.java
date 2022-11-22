@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-23T03:02:36+0700",
+    date = "2022-11-23T05:28:25+0700",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
 )
 @Component
@@ -44,6 +44,9 @@ public class CommentMapperImpl implements CommentMapper {
             if ( comment.getDataCreated() != null ) {
                 commentResponse.setDataCreated( DateTimeFormatter.ISO_LOCAL_DATE_TIME.format( comment.getDataCreated() ) );
             }
+        }
+        if ( user != null ) {
+            commentResponse.setName( user.getName() );
         }
 
         return commentResponse;

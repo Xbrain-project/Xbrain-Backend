@@ -22,7 +22,7 @@ public class TeacherEntity {
     private String name ;
     private String email ;
     private String password;
-    private String Nschool;
+    private String school;
     private String nickname;
     private String sex;
     private String status;

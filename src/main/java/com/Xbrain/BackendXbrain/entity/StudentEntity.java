@@ -2,6 +2,7 @@ package com.Xbrain.BackendXbrain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,18 +12,27 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long student_id ;
-    @Lob
     private String name ;
     private String email ;
 
     private String password;
     private String nickname;
-    private String Nschool;
+    private String school;
     private String grade;
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
     private int phone;
     private String address;
     private String line;
@@ -53,13 +63,7 @@ public class StudentEntity {
         this.nickname = nickname;
     }
 
-    public String getNschool() {
-        return Nschool;
-    }
 
-    public void setNschool(String nschool) {
-        Nschool = nschool;
-    }
 
     public String getGrade() {
         return grade;
