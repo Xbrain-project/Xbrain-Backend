@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.dto;
 
 import com.Xbrain.BackendXbrain.entity.ApplyPostEntity;
+import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
 import lombok.*;
 
@@ -16,5 +17,5 @@ public class ApplyPostResponse {
 
     private List<ApplyPostEntity> applyPostEntity ;
     private TeacherPostEntity teacherPostEntity ;
-
+    private TeacherEntity teacherEntity ;
 }

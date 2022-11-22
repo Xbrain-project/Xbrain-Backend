@@ -2,6 +2,8 @@ package com.Xbrain.BackendXbrain.services;
 
 //import com.Xbrain.BackendXbrain.dto.ApplyPostRequest;
 import com.Xbrain.BackendXbrain.dto.ApplyPostResponse;
+import com.Xbrain.BackendXbrain.dto.StudentApplyPostDTO;
+import com.Xbrain.BackendXbrain.dto.TeacherApplyPostDTO;
 import com.Xbrain.BackendXbrain.entity.ApplyPostEntity;
 import com.Xbrain.BackendXbrain.entity.StudentEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
@@ -15,5 +17,7 @@ public interface ApplyPostService {
 
     ApplyPostEntity updateStatusApplyPost (ApplyPostEntity applyPost , Long apply_id);
 
-    ApplyPostResponse getApplyPosts(String post_id);
+    List<TeacherApplyPostDTO> getApplyPosts(Long teacher_id);
+    List<StudentApplyPostDTO> getStudentApplyPosts(Long student_id);
+
 }

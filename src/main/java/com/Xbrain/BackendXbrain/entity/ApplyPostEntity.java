@@ -26,7 +26,6 @@ public class ApplyPostEntity {
 
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private StudentEntity studentEntity ;
 
@@ -35,6 +34,14 @@ public class ApplyPostEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private TeacherPostEntity teacherPostEntity;
+
+    private String course ;
+
+    private String teachType ;
+
+    private String price ;
+
+    private String place ;
 
     private String status ;
 

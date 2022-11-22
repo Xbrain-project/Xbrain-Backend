@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TeacherPostService {
-     TeacherPostEntity addTeacherPost(TeacherPostRequest request) ;
+     TeacherPostEntity addTeacherPost(TeacherPostEntity teacherPost , Long teacher_id) ;
 
     TeacherPostEntity updatePost(TeacherPostRequest request);
 
@@ -18,7 +18,7 @@ public interface TeacherPostService {
 
     List<TeacherPostEntity> getAllTeacherPost() ;
 
-    List<SearchDTO>searchTeacherPosts(SearchRequestDTO searchRequestDTO) ;
+    List<SearchDTO>searchTeacherPosts(SearchRequestDTO searchRequestDTO ) ;
 
     List<TeacherPostEntity> searchVerTwo(TeacherPostEntity searchEntity);
 

@@ -2,8 +2,11 @@ package com.Xbrain.BackendXbrain.services;
 
 //import com.Xbrain.BackendXbrain.dto.ApplyPostRequest;
 import com.Xbrain.BackendXbrain.dto.ApplyPostResponse;
+import com.Xbrain.BackendXbrain.dto.StudentApplyPostDTO;
+import com.Xbrain.BackendXbrain.dto.TeacherApplyPostDTO;
 import com.Xbrain.BackendXbrain.entity.ApplyPostEntity;
 import com.Xbrain.BackendXbrain.entity.StudentEntity;
+import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
 import com.Xbrain.BackendXbrain.repository.ApplyPostRepostity;
 import com.Xbrain.BackendXbrain.repository.StudentRepository;
@@ -17,16 +20,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ApplyPostServiceImpl implements ApplyPostService{
     @Autowired
     ApplyPostRepostity applyPostRepostity ;
+
     @Autowired
     TeacherRepository teacherRepository ;
+
     @Autowired
     TeacherPostRepository teacherPostRepository ;
+
     @Autowired
     StudentRepository studentRepository ;
 
@@ -70,39 +75,73 @@ public class ApplyPostServiceImpl implements ApplyPostService{
 
         ApplyPostEntity temp_apply = applyPostFromDb.get() ;
         temp_apply.setStatus(applyPost.getStatus());
-
+        applyPostRepostity.save(temp_apply);
 
 //        return applyPostRepostity.save(temp_apply) ;
         return temp_apply ;
     }
 
-
     @Override
-    public ApplyPostResponse getApplyPosts(String post_id) {
-        Optional<TeacherPostEntity> teacherPost = teacherPostRepository.findById(Long.valueOf(post_id)) ;
-        TeacherPostEntity temp_teacherPost = teacherPost.get() ;
+    public List<TeacherApplyPostDTO> getApplyPosts(Long teacher_id) {
+        // teacher -> post_id -> apply -> student
+        Optional<TeacherEntity> teacher = teacherRepository.findById(teacher_id) ;
+        TeacherEntity temp_teacher = teacher.get() ;
+        Long post_id = temp_teacher.getTeacherPostEntity().getPost_id() ;
+        List<StudentEntity> students = new ArrayList<>() ;
+        List<ApplyPostEntity> studentApplyPosts = applyPostRepostity.getTeacherApplyPost(post_id) ;
+        List<TeacherApplyPostDTO> teacherApplyPostDTOSList = new ArrayList<>() ;
 
-        List<ApplyPostEntity> applyPostEntities = applyPostRepostity.getTeacherApplyPost(post_id);
+        int i = 0 ;
+        while(i < studentApplyPosts.size()) {
+            TeacherApplyPostDTO tadto = new TeacherApplyPostDTO() ;
+            students.add(studentApplyPosts.get(i).getStudentEntity()) ;
 
-        List<ApplyPostEntity> applies = new ArrayList<>();
+            tadto.setStudentName(students.get(i).getName());
+            tadto.setCourse(studentApplyPosts.get(i).getCourse());
+            tadto.setTeachType(studentApplyPosts.get(i).getTeachType());
+            tadto.setPrice(studentApplyPosts.get(i).getPrice());
+            tadto.setPlace(studentApplyPosts.get(i).getPlace());
+            tadto.setStatus(studentApplyPosts.get(i).getStatus());
 
+            teacherApplyPostDTOSList.add(tadto);
+            i = i + 1 ;
+        }
 
-        applies = applyPostEntities.stream()
-                .map((applyPostEntity) ->
-                        ApplyPostEntity.builder()
-                                .apply_id(applyPostEntity.getApply_id())
-                                .status(applyPostEntity.getStatus())
-                                .applyDate(applyPostEntity.getApplyDate())
-                                .build()
-                ).collect(Collectors.toList());
-
-        ApplyPostResponse applyPostResponse = new ApplyPostResponse( applies , temp_teacherPost );
-
-        return applyPostResponse ;
-
+         return teacherApplyPostDTOSList ;
     }
 
+    @Override
+    public List<StudentApplyPostDTO> getStudentApplyPosts(Long student_id) {
 
+        List<ApplyPostEntity> studentApplyPosts = applyPostRepostity.getStudentApplyPost(student_id) ;
+
+        List<TeacherPostEntity> teacherPosts = new ArrayList<>() ;
+        List<TeacherEntity> teacherEntities = new ArrayList<>();
+        List<Long> posts_id = new ArrayList<>() ;
+        List<StudentApplyPostDTO> studentApplyPostDTOList = new ArrayList<>() ;
+
+        int i = 0 ;
+
+        while(i < studentApplyPosts.size()) {
+            StudentApplyPostDTO sdto = new StudentApplyPostDTO() ;
+            teacherPosts.add(studentApplyPosts.get(i).getTeacherPostEntity());
+            posts_id.add(teacherPosts.get(i).getPost_id());
+            TeacherEntity teacher = teacherRepository.findbyPostId(posts_id.get(i));
+            teacherEntities.add(teacher) ;
+            sdto.setTeacherName(teacherEntities.get(i).getName());
+            sdto.setCourse(studentApplyPosts.get(i).getCourse());
+            sdto.setTeachType(studentApplyPosts.get(i).getTeachType());
+            sdto.setPrice(studentApplyPosts.get(i).getPrice());
+            sdto.setPlace(studentApplyPosts.get(i).getPlace());
+            sdto.setStatus(studentApplyPosts.get(i).getStatus());
+
+            studentApplyPostDTOList.add(sdto);
+            i = i + 1 ;
+        }
+
+        return studentApplyPostDTOList;
+
+    }
 
 
 }
