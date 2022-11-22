@@ -24,7 +24,7 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public PostEntity addPost(Long userId, String title, String content) throws BaseException {
+    public PostEntity addPost(String email, String title, String content) throws BaseException {
 
         // validate
 
@@ -38,12 +38,12 @@ public class PostService {
 //            return postRepository.save(postRequest);
 //        });
 
-        Optional<UserEntity> user = userRepository.findById(userId);
+        UserEntity user = userRepository.findByEmail(email);
 
         PostEntity post = new PostEntity();
         post.setTitle(title);
         post.setContent(content);
-        post.setUserEntity(user.get());
+        post.setUserEntity(user);
 
 
         return postRepository.save(post);

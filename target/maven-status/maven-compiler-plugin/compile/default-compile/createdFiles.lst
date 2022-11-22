@@ -5,6 +5,7 @@ com\Xbrain\BackendXbrain\entity\CommentEntity.class
 com\Xbrain\BackendXbrain\controller\TeacherPostController.class
 com\Xbrain\BackendXbrain\repository\CommentRepository.class
 com\Xbrain\BackendXbrain\factory\PostBuilder.class
+com\Xbrain\BackendXbrain\schedule\UserSchedule.class
 com\Xbrain\BackendXbrain\dto\CommentResponse.class
 com\Xbrain\BackendXbrain\entity\ApplyPostEntity.class
 com\Xbrain\BackendXbrain\services\CommentService.class
@@ -25,6 +26,7 @@ com\Xbrain\BackendXbrain\repository\TeacherRepository.class
 com\Xbrain\BackendXbrain\bussiness\CommentBusiness.class
 com\Xbrain\BackendXbrain\controller\UserController.class
 com\Xbrain\BackendXbrain\entity\PostEntity.class
+com\Xbrain\BackendXbrain\dto\PostRequest.class
 com\Xbrain\BackendXbrain\factory\JpaFactoryImpl.class
 com\Xbrain\BackendXbrain\repository\StudentRepository.class
 com\Xbrain\BackendXbrain\entity\TeacherEntity.class
@@ -46,7 +48,6 @@ com\Xbrain\BackendXbrain\BackendBrainApplication.class
 com\Xbrain\BackendXbrain\entity\StudentEntity.class
 com\Xbrain\BackendXbrain\services\ApplyPostService.class
 com\Xbrain\BackendXbrain\services\TestService.class
-com\Xbrain\BackendXbrain\controller\ApplyPostController.class
 com\Xbrain\BackendXbrain\dto\SelectPostResponse.class
 com\Xbrain\BackendXbrain\exception\UserException.class
 com\Xbrain\BackendXbrain\dto\CommentRequest.class

@@ -2,6 +2,7 @@ package com.Xbrain.BackendXbrain.controller;
 
 import com.Xbrain.BackendXbrain.bussiness.PostBusiness;
 import com.Xbrain.BackendXbrain.dto.MPostresponse;
+import com.Xbrain.BackendXbrain.dto.PostRequest;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 import com.Xbrain.BackendXbrain.exception.BaseException;
 import com.Xbrain.BackendXbrain.repository.CommentRepository;
@@ -30,10 +31,10 @@ public class PostController  {
         this.testService = testService;
     }
 
-    @PostMapping("/users/{userId}")
-    public ResponseEntity<MPostresponse> addPost(@PathVariable(value = "userId") Long userId, @RequestBody PostEntity postEntity) throws BaseException {
-        System.out.println(postEntity);
-        MPostresponse response = postBusiness.create(postEntity, userId);
+    @PostMapping("/users/post")
+    public ResponseEntity<MPostresponse> addPost(@RequestBody PostRequest postRequest) throws BaseException {
+
+        MPostresponse response = postBusiness.create(postRequest);
         return ResponseEntity.ok(response);
     }
 

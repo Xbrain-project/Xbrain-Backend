@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.bussiness;
 
 import com.Xbrain.BackendXbrain.dto.MPostresponse;
+import com.Xbrain.BackendXbrain.dto.PostRequest;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 import com.Xbrain.BackendXbrain.entity.UserEntity;
 import com.Xbrain.BackendXbrain.exception.BaseException;
@@ -23,9 +24,9 @@ public class PostBusiness implements PostMapper {
     }
     private final PostService postService;
 
-    public MPostresponse create(PostEntity request, Long userId) throws BaseException {
+    public MPostresponse create(PostRequest request) throws BaseException {
 
-        PostEntity post = postService.addPost(userId,request.getTitle(),request.getContent());
+        PostEntity post = postService.addPost(request.getEmail(),request.getTitle(),request.getContent());
         return postMapper.toPostResponse(post,post.getUserEntity());
     }
 
