@@ -1,7 +1,7 @@
 package com.Xbrain.BackendXbrain.services;
 
-import com.Xbrain.BackendXbrain.entity.PostEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
+import com.Xbrain.BackendXbrain.exception.UserException;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,23 +18,23 @@ public class TeacherServiceImpl implements TeacherService{
         this.teacherRepository = teacherRepository;
     }
 
-//    @Override
-//    public List<TeacherEntity> teachers() {
-//        List<TeacherEntity> teacherEntities = teacherRepository.findAll();
-//
-//        List<TeacherEntity> teachers  = new ArrayList<>();
-//
-//        teachers = teacherEntities.stream()
-//                .map((teacherEntity) ->
-//                        TeacherEntity.builder()
-//                                .email(teacherEntity.getEmail())
-//                                .name(teacherEntity.getName())
-//                                .teacher_id(teacherEntity.getTeacher_id())
-//                                .build()
-//                ).collect(Collectors.toList());
-//        return teachers;
-//
-//    }
+    @Override
+    public List<TeacherEntity> teachers() {
+        List<TeacherEntity> teacherEntities = teacherRepository.findAll();
+
+        List<TeacherEntity> teachers  = new ArrayList<>();
+
+        teachers = teacherEntities.stream()
+                .map((teacherEntity) ->
+                        TeacherEntity.builder()
+                                .email(teacherEntity.getEmail())
+                                .name(teacherEntity.getName())
+                                .teacher_id(teacherEntity.getTeacher_id())
+                                .build()
+                ).collect(Collectors.toList());
+        return teachers;
+
+    }
 
     @Override
     public TeacherEntity addTeacher(TeacherEntity addTeacher ) {
@@ -54,18 +54,40 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public List<TeacherEntity> allTeacher() {
-        List<TeacherEntity> teachers = new ArrayList<TeacherEntity>();
-
-        teacherRepository.findAll().forEach(teachers::add);
+        List<TeacherEntity> teacherEntities = teacherRepository.findAll();
+        List<TeacherEntity> teachers = new ArrayList<>();
+        teachers = teacherEntities.stream()
+                .map((postEntity) ->
+                        TeacherEntity.builder()
+                                .teacher_id(postEntity.getTeacher_id())
+                                .name(postEntity.getName())
+                                .email(postEntity.getEmail())
+                                .build()
+                ).collect(Collectors.toList());
 
         return teachers;
     }
 
     @Override
-    public TeacherEntity findById(Long teacherId) {
+    public TeacherEntity findById(Long teacherId) throws UserException {
+
         Optional<TeacherEntity> teacher = teacherRepository.findById(teacherId);
-        TeacherEntity temp_teacher = teacher.get() ;
-        return temp_teacher ;
+        if(teacher.isPresent()){
+            TeacherEntity temp_teacher = teacher.get() ;
+            return temp_teacher ;
+        }else {
+            throw  UserException.userNotFound() ;
+        }
+    }
+
+    public TeacherEntity findByEmail (String email,String password) {
+
+        TeacherEntity byEmail = teacherRepository.findByEmailAndPassword(email,password);
+
+        return byEmail;
+
+
+
     }
 
 

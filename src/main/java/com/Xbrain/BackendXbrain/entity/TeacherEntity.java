@@ -1,16 +1,19 @@
 package com.Xbrain.BackendXbrain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Table(name = "teachers_test")
+@Table(name = "teachers")
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class TeacherEntity {
 
     @Id
@@ -18,41 +21,23 @@ public class TeacherEntity {
     private Long teacher_id ;
     private String name ;
     private String email ;
+    private String password;
+    private String Nschool;
+    private String nickname;
+    private String sex;
+    private String status;
+    private String intro;
+    private int phone;
+    private String line;
+
+    private String role;
 
 
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private TeacherPostEntity teacherPostEntity ;
 
-    public TeacherPostEntity getTeacherPostEntity() {
-        return teacherPostEntity;
-    }
 
-    public void setTeacherPostEntity(TeacherPostEntity teacherPostEntity) {
-        this.teacherPostEntity = teacherPostEntity;
-    }
 
-    public Long getTeacher_id() {
-        return teacher_id;
-    }
-
-    public void setTeacher_id(Long teacher_id) {
-        this.teacher_id = teacher_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

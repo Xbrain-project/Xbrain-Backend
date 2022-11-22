@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-23T02:30:56+0700",
+    date = "2022-11-23T03:02:36+0700",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
 )
 @Component
@@ -29,9 +29,6 @@ public class PostMapperImpl implements PostMapper {
             if ( post.getDataCreated() != null ) {
                 mPostresponse.setDataCreated( DateTimeFormatter.ISO_LOCAL_DATE_TIME.format( post.getDataCreated() ) );
             }
-        }
-        if ( user != null ) {
-            mPostresponse.setUsername( user.getUsername() );
         }
 
         return mPostresponse;

@@ -1,26 +1,15 @@
-package com.Xbrain.BackendXbrain.entity;
+package com.Xbrain.BackendXbrain.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+public class UserDTO {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id ;
-
         private String name ;
         private String email;
         private String password ;
@@ -34,10 +23,6 @@ public class UserEntity {
         private String status;
         private String intro;
 
+
         private String role;
-
-
-
 }
-
-

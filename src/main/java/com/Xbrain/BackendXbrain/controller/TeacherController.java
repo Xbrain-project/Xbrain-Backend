@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.controller;
 
 import com.Xbrain.BackendXbrain.entity.TeacherEntity;
+import com.Xbrain.BackendXbrain.exception.UserException;
 import com.Xbrain.BackendXbrain.repository.TeacherRepository;
 import com.Xbrain.BackendXbrain.services.TeacherService;
 import org.springframework.stereotype.Component;
@@ -14,22 +15,22 @@ import java.util.Optional;
 public class TeacherController {
     TeacherService teacherService ;
     TeacherRepository teacherRepository ;
-    public TeacherController(TeacherService teacherService,TeacherRepository teacherRepository ) {
+    public TeacherController(TeacherService teacherService, TeacherRepository teacherRepository ) {
         this.teacherService = teacherService;
         this.teacherRepository = teacherRepository ;
 
     }
 
-        @PostMapping(path = "/addTeacher")
+    @PostMapping(path = "/addTeacher")
     public TeacherEntity addTeacher(@RequestBody TeacherEntity teacherEntity ){
         return teacherService.addTeacher(teacherEntity);
 //        return  teacherService.addTeacher(teacherEntity);
     }
 
-//    @GetMapping("/allTeachers")
-//    public List<TeacherEntity> teachers() {
-//        return teacherService.teachers();
-//    }
+    @GetMapping("/allTeachers")
+    public List<TeacherEntity> teachers() {
+        return teacherService.teachers();
+    }
 
     @PutMapping("/updatePostToOwner")
     public Optional<TeacherEntity> updatePostOwner(TeacherEntity owner) {
@@ -42,8 +43,13 @@ public class TeacherController {
     }
 
     @GetMapping("/getTeacherById/{teacherId}")
-    public  TeacherEntity getTeacherById(@PathVariable("teacherId") Long teacherId){
+    public  TeacherEntity getTeacherById(@PathVariable("teacherId") Long teacherId) throws UserException {
         return teacherService.findById(teacherId);
+    }
+
+    @GetMapping("/testget")
+    public List<TeacherEntity> testGet(){
+        return  teacherRepository.findAll() ;
     }
 }
 
