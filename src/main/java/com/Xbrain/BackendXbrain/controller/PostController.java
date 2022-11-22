@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("http://localhost:3000")
+
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class PostController  {
 
@@ -31,6 +32,7 @@ public class PostController  {
 
     @PostMapping("/users/{userId}")
     public ResponseEntity<MPostresponse> addPost(@PathVariable(value = "userId") Long userId, @RequestBody PostEntity postEntity) throws BaseException {
+        System.out.println(postEntity);
         MPostresponse response = postBusiness.create(postEntity, userId);
         return ResponseEntity.ok(response);
     }
@@ -51,8 +53,10 @@ public class PostController  {
     @GetMapping("/posts/{id}")
     public ResponseEntity<Object> getPostById(@PathVariable String id) {
 
-        Object response  = testService.getEntityById("POST",id);
+//        Object response  = testService.getEntityById("POST",id);
+        MPostresponse response = postBusiness.getPostById(id);
         return ResponseEntity.ok(response);
+
     }
 
 //    @DeleteMapping("/posts/{id}")
