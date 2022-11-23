@@ -12,6 +12,7 @@ import java.util.List;
 
 public class SearchDTO {
 
+    private String teacherName ;
     private String description ;
     private List<String> openCourse ;
     private List<String> studentClass ;
@@ -21,67 +22,75 @@ public class SearchDTO {
     private Timestamp createDate  ;
     private String price ;
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setOpenCourse(List<String> openCourse) {
-        this.openCourse = openCourse;
-    }
-
-    public void setStudentClass(List<String> studentClass) {
-        this.studentClass = studentClass;
-    }
-
-    public void setTeachType(List<String> teachType) {
-        this.teachType = teachType;
-    }
-
-    public void setPlace(List<String> place) {
-        this.place = place;
-    }
-
-    public void setFreeTime(List<String> freeTime) {
-        this.freeTime = freeTime;
-    }
-
-    public void setCreateDate(Timestamp createDate) {
-        this.createDate = createDate;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public List<String> getOpenCourse() {
         return openCourse;
+    }
+
+    public void setOpenCourse(List<String> openCourse) {
+        this.openCourse = openCourse;
     }
 
     public List<String> getStudentClass() {
         return studentClass;
     }
 
+    public void setStudentClass(List<String> studentClass) {
+        this.studentClass = studentClass;
+    }
+
     public List<String> getTeachType() {
         return teachType;
+    }
+
+    public void setTeachType(List<String> teachType) {
+        this.teachType = teachType;
     }
 
     public List<String> getPlace() {
         return place;
     }
 
+    public void setPlace(List<String> place) {
+        this.place = place;
+    }
+
     public List<String> getFreeTime() {
         return freeTime;
+    }
+
+    public void setFreeTime(List<String> freeTime) {
+        this.freeTime = freeTime;
     }
 
     public Timestamp getCreateDate() {
         return createDate;
     }
 
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
+
     public String getPrice() {
         return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

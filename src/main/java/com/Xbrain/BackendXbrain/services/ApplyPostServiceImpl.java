@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.services;
 
 //import com.Xbrain.BackendXbrain.dto.ApplyPostRequest;
+import com.Xbrain.BackendXbrain.dto.ApplyPostDTO;
 import com.Xbrain.BackendXbrain.dto.ApplyPostResponse;
 import com.Xbrain.BackendXbrain.dto.StudentApplyPostDTO;
 import com.Xbrain.BackendXbrain.dto.TeacherApplyPostDTO;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ApplyPostServiceImpl implements ApplyPostService{
@@ -41,14 +43,27 @@ public class ApplyPostServiceImpl implements ApplyPostService{
         this.teacherPostRepository = teacherPostRepository;
         this.studentRepository = studentRepository;
     }
+    public String listToString(List<String> list) {
+        List<String> stringList = list ;
+        String result = stringList.stream()
+                .map(n -> String.valueOf(n))
+                .collect(Collectors.joining(",")) ;
+        return  result;
+    }
 
     @Override
-    public ApplyPostEntity addApplyPost(ApplyPostEntity applyPost) {
+    public ApplyPostEntity addApplyPost(ApplyPostDTO applyPostDTO , Long student_id) {
 
         Calendar calendar = Calendar.getInstance() ;
+        Long post_id = applyPostDTO.getPost_id() ;
 
-        Long student_id  = applyPost.getStudentEntity().getStudent_id() ;
-        Long post_id = applyPost.getTeacherPostEntity().getPost_id() ;
+        ApplyPostEntity applyPost = new ApplyPostEntity() ;
+
+        TeacherEntity teacher = teacherRepository.findbyPostId(post_id) ;
+        applyPost.setCourse(listToString(applyPostDTO.getCourse()));
+        applyPost.setPlace(listToString(applyPostDTO.getPlace()));
+        applyPost.setTeachType(listToString(applyPostDTO.getTeachType()));
+
 
         ApplyPostEntity temp_apply = applyPost ;
 

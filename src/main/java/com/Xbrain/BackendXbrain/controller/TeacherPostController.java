@@ -55,9 +55,9 @@ public class TeacherPostController {
     @PostMapping("/addTeacherPost/{teacher_id}")
     public TeacherPostEntity newTeacherPost(@RequestBody TeacherPostEntity teacherPost , @PathVariable("teacher_id") Long teacher_id ){
         System.out.println(teacherPost);
-        return null ;
+//        return null ;
         //
-//        return teacherPostService.addTeacherPost( teacherPost ,  teacher_id);
+        return teacherPostService.addTeacherPost( teacherPost ,  teacher_id);
 
     }
     @GetMapping("/getAllTeacherPost")

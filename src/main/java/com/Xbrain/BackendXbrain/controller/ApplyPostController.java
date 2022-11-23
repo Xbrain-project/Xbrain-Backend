@@ -1,6 +1,7 @@
 package com.Xbrain.BackendXbrain.controller;
 
 //import com.Xbrain.BackendXbrain.dto.ApplyPostRequest;
+import com.Xbrain.BackendXbrain.dto.ApplyPostDTO;
 import com.Xbrain.BackendXbrain.dto.ApplyPostResponse;
 import com.Xbrain.BackendXbrain.dto.StudentApplyPostDTO;
 import com.Xbrain.BackendXbrain.dto.TeacherApplyPostDTO;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 public class ApplyPostController {
     ApplyPostService applyPostService ;
     ApplyPostRepostity applyPostRepostity ;
@@ -28,13 +29,15 @@ public class ApplyPostController {
         this.applyPostRepostity = applyPostRepostity;
     }
 
-    @PostMapping(path = "/testTong")
-    String testTong(){
+    @PostMapping(path = "/testTong/{student_id}")
+    String testTong(@PathVariable("student_id") Long student_id ,@RequestBody ApplyPostDTO applyPostDTO  ){
+        System.out.println(applyPostDTO);
+        System.out.println(student_id);
         return "helloworld" ;
     }
-    @PostMapping(path = "/createApplyPost")
-    ApplyPostEntity addApplyPost(@RequestBody ApplyPostEntity applyPostEntity){
-        return applyPostService.addApplyPost(applyPostEntity);
+    @PostMapping(path = "/createApplyPost/{student_id}")
+    ApplyPostEntity addApplyPost(@RequestBody ApplyPostDTO applyPostDTO , @PathVariable("student_id") Long student_id){
+        return applyPostService.addApplyPost(applyPostDTO , student_id );
     }
 
 //    fix this shit !!!!!!!
