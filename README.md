@@ -5,7 +5,7 @@
 <br /> อีกทั้งระบบของเราจะมี Community ที่สามารถทำหน้าที่เป็นข่าวสาร คลังความรู้ที่ทุกคนจะมาแบ่งปันและถาม-ตอบปัญหาเรื่องเรียน รวมไปถึงเรื่องการซื้อ-ขายหรือแลกเปลี่ยนหนังสือเรียน
 
 ## Frontend : 
-* https://github.com/Xbrain-project/Xbrain-frontend
+* https://github.com/Xbrain-project/Xbrain-Frontend
 
 ## Backend :
 * https://github.com/Xbrain-project/Xbrain-Backend
