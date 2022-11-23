@@ -6,7 +6,6 @@ import com.Xbrain.BackendXbrain.dto.PostRequest;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 import com.Xbrain.BackendXbrain.exception.BaseExceptionImpl;
 import com.Xbrain.BackendXbrain.services.PostService;
-import com.Xbrain.BackendXbrain.services.TestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +20,10 @@ public class PostController  {
 
     private final PostBusiness postBusiness;
     private final PostService postService;
-    private final TestService testService;
 
-    public PostController(PostBusiness postBusiness, PostService postService, TestService testService) {
+    public PostController(PostBusiness postBusiness, PostService postService) {
         this.postBusiness = postBusiness;
         this.postService = postService;
-        this.testService = testService;
     }
 
     @PostMapping("/users/post")
