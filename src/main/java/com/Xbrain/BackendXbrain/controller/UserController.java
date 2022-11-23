@@ -4,7 +4,6 @@ package com.Xbrain.BackendXbrain.controller;
 import com.Xbrain.BackendXbrain.bussiness.UserBusiness;
 import com.Xbrain.BackendXbrain.dto.UserDTO;
 import com.Xbrain.BackendXbrain.entity.UserEntity;
-import com.Xbrain.BackendXbrain.exception.BaseException;
 
 import com.Xbrain.BackendXbrain.services.UserService;
 import org.springframework.http.ResponseEntity;

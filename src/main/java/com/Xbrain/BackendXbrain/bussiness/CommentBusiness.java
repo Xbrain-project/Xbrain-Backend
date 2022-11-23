@@ -3,7 +3,7 @@ package com.Xbrain.BackendXbrain.bussiness;
 import com.Xbrain.BackendXbrain.dto.CommentRequest;
 import com.Xbrain.BackendXbrain.dto.CommentResponse;
 import com.Xbrain.BackendXbrain.entity.CommentEntity;
-import com.Xbrain.BackendXbrain.exception.BaseException;
+import com.Xbrain.BackendXbrain.exception.BaseExceptionImpl;
 import com.Xbrain.BackendXbrain.mapper.CommentMapper;
 import com.Xbrain.BackendXbrain.services.CommentService;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class CommentBusiness {
         this.commentMapper = commentMapper;
     }
 
-    public CommentResponse create(String postId, CommentRequest request) throws BaseException {
+    public CommentResponse create(String postId, CommentRequest request) throws BaseExceptionImpl {
         CommentEntity comment = commentService.create(request.getContent(),postId, request.getEmail());
         return commentMapper.toCommentResponse(comment,comment.getUserEntity());
     }

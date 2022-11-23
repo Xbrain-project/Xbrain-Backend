@@ -77,6 +77,9 @@ public class TeacherServiceImpl implements TeacherService{
     public TeacherEntity findById(Long teacherId) throws UserException {
 
         Optional<TeacherEntity> teacher = teacherRepository.findById(teacherId);
+        if (teacher.isEmpty()) {
+            throw UserException.notFound();
+        }
         if(teacher.isPresent()){
             TeacherEntity temp_teacher = teacher.get() ;
             return temp_teacher ;

@@ -3,7 +3,7 @@ import com.Xbrain.BackendXbrain.bussiness.CommentBusiness;
 import com.Xbrain.BackendXbrain.dto.CommentRequest;
 import com.Xbrain.BackendXbrain.dto.CommentResponse;
 import com.Xbrain.BackendXbrain.entity.CommentEntity;
-import com.Xbrain.BackendXbrain.exception.BaseException;
+import com.Xbrain.BackendXbrain.exception.BaseExceptionImpl;
 import com.Xbrain.BackendXbrain.services.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class CommentController {
     }
 
     @PostMapping("/posts/{postId}/comments")
-    public ResponseEntity<CommentResponse> createComment(@PathVariable(value = "postId") String postId, @RequestBody CommentRequest request) throws BaseException {
+    public ResponseEntity<CommentResponse> createComment(@PathVariable(value = "postId") String postId, @RequestBody CommentRequest request) throws BaseExceptionImpl {
         CommentResponse response =commentBusiness.create(postId,request);
         return ResponseEntity.ok(response);
     }

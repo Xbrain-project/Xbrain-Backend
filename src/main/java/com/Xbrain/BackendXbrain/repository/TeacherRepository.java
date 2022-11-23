@@ -17,6 +17,9 @@ public interface TeacherRepository extends JpaRepository<TeacherEntity, Long> {
             nativeQuery = true)
     TeacherEntity deleteTeacherPost (Long post_id);
 
+    @Query(value = "SELECT * FROM project.teachers a WHERE a.post_id = :post_id", nativeQuery = true)
+    TeacherEntity findbyPostId ( Long post_id) ;
+
     TeacherEntity findByEmailAndPassword(String email, String password);
 
 

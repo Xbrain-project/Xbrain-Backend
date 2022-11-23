@@ -1,7 +1,7 @@
 package com.Xbrain.BackendXbrain.exception;
 
 
-public class FileException extends BaseException {
+public class FileException extends BaseExceptionImpl {
 
     public FileException(String code) {
         super("file." + code);

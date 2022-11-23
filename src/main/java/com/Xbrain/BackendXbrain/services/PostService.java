@@ -2,7 +2,7 @@ package com.Xbrain.BackendXbrain.services;
 
 import com.Xbrain.BackendXbrain.entity.PostEntity;
 import com.Xbrain.BackendXbrain.entity.UserEntity;
-import com.Xbrain.BackendXbrain.exception.BaseException;
+import com.Xbrain.BackendXbrain.exception.BaseExceptionImpl;
 
 import com.Xbrain.BackendXbrain.repository.PostRepository;
 import com.Xbrain.BackendXbrain.repository.UserRepository;
@@ -24,7 +24,7 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public PostEntity addPost(String email, String title, String content) throws BaseException {
+    public PostEntity addPost(String email, String title, String content) throws BaseExceptionImpl {
 
         // validate
 

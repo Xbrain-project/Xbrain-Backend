@@ -3,6 +3,7 @@ package com.Xbrain.BackendXbrain.services;
 import com.Xbrain.BackendXbrain.dto.UpdateStudentReq;
 import com.Xbrain.BackendXbrain.dto.UpdateTeacherReq;
 import com.Xbrain.BackendXbrain.entity.StudentEntity;
+import com.Xbrain.BackendXbrain.exception.UserException;
 import com.Xbrain.BackendXbrain.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,12 @@ public class StudentService {
 
     }
 
-    public StudentEntity findById(Long studentId) {
+    public StudentEntity findById(Long studentId) throws UserException {
 
         Optional<StudentEntity> student = studentRepository.findById(studentId);
+        if (student.isEmpty()) {
+            throw UserException.notFound();
+        }
             StudentEntity temp_student = student.get();
             return temp_student;
 

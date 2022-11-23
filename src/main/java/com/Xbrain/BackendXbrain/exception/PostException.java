@@ -1,7 +1,7 @@
 package com.Xbrain.BackendXbrain.exception;
 
 
-public class PostException extends BaseException {
+public class PostException extends BaseExceptionImpl {
 
     public PostException(String code) {
         super("product." + code);

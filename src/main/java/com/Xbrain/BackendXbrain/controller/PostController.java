@@ -4,9 +4,7 @@ import com.Xbrain.BackendXbrain.bussiness.PostBusiness;
 import com.Xbrain.BackendXbrain.dto.MPostresponse;
 import com.Xbrain.BackendXbrain.dto.PostRequest;
 import com.Xbrain.BackendXbrain.entity.PostEntity;
-import com.Xbrain.BackendXbrain.exception.BaseException;
-import com.Xbrain.BackendXbrain.repository.CommentRepository;
-import com.Xbrain.BackendXbrain.repository.PostRepository;
+import com.Xbrain.BackendXbrain.exception.BaseExceptionImpl;
 import com.Xbrain.BackendXbrain.services.PostService;
 import com.Xbrain.BackendXbrain.services.TestService;
 import org.springframework.http.HttpStatus;
@@ -32,7 +30,7 @@ public class PostController  {
     }
 
     @PostMapping("/users/post")
-    public ResponseEntity<MPostresponse> addPost(@RequestBody PostRequest postRequest) throws BaseException {
+    public ResponseEntity<MPostresponse> addPost(@RequestBody PostRequest postRequest) throws BaseExceptionImpl {
 
         MPostresponse response = postBusiness.create(postRequest);
         return ResponseEntity.ok(response);
