@@ -60,6 +60,15 @@ public class TeacherPostController {
         return teacherPostService.addTeacherPost( teacherPost ,  teacher_id);
 
     }
+
+//    @GetMapping("/addTeacherPost/{s_id}")
+//    public TeacherPostEntity newTeacherPost(@PathVariable("s_id") Long teacher_id ){
+//        System.out.println(teacherPost);
+////        return null ;
+//        //
+//        return teacherPostService.addTeacherPost( teacherPost ,  teacher_id);
+//
+//    }
     @GetMapping("/getAllTeacherPost")
     public List<TeacherPostEntity> getAllTeacherPost() {
         return teacherPostService.getAllTeacherPost() ;
