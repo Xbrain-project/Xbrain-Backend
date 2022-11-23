@@ -29,12 +29,6 @@ public class ApplyPostController {
         this.applyPostRepostity = applyPostRepostity;
     }
 
-    @PostMapping(path = "/testTong/{student_id}")
-    String testTong(@PathVariable("student_id") Long student_id ,@RequestBody ApplyPostDTO applyPostDTO  ){
-        System.out.println(applyPostDTO);
-        System.out.println(student_id);
-        return "helloworld" ;
-    }
     @PostMapping(path = "/createApplyPost/{student_id}")
     ApplyPostEntity addApplyPost(@RequestBody ApplyPostDTO applyPostDTO , @PathVariable("student_id") Long student_id){
         return applyPostService.addApplyPost(applyPostDTO , student_id );
