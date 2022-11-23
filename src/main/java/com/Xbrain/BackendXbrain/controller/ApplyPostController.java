@@ -2,11 +2,14 @@ package com.Xbrain.BackendXbrain.controller;
 
 //import com.Xbrain.BackendXbrain.dto.ApplyPostRequest;
 import com.Xbrain.BackendXbrain.dto.ApplyPostDTO;
+import com.Xbrain.BackendXbrain.dto.ApplyPostResponse;
 import com.Xbrain.BackendXbrain.dto.StudentApplyPostDTO;
 import com.Xbrain.BackendXbrain.dto.TeacherApplyPostDTO;
 import com.Xbrain.BackendXbrain.entity.ApplyPostEntity;
+import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.repository.ApplyPostRepostity;
 import com.Xbrain.BackendXbrain.services.ApplyPostService;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

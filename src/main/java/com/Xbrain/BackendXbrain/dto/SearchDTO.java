@@ -1,6 +1,9 @@
 package com.Xbrain.BackendXbrain.dto;
 
+import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -11,6 +14,8 @@ public class SearchDTO {
 
     private String teacherName ;
     private String description ;
+
+    private Long post_id ;
     private List<String> openCourse ;
     private List<String> studentClass ;
     private List<String> teachType ;
@@ -33,6 +38,14 @@ public class SearchDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(Long post_id) {
+        this.post_id = post_id;
     }
 
     public List<String> getOpenCourse() {

@@ -1,15 +1,21 @@
 package com.Xbrain.BackendXbrain.controller;
 
-import com.Xbrain.BackendXbrain.dto.SearchDTO;
-import com.Xbrain.BackendXbrain.dto.SearchRequestDTO;
-import com.Xbrain.BackendXbrain.dto.TeacherPostRequest;
+import com.Xbrain.BackendXbrain.dto.*;
+import com.Xbrain.BackendXbrain.entity.TeacherEntity;
 import com.Xbrain.BackendXbrain.entity.TeacherPostEntity;
 import com.Xbrain.BackendXbrain.repository.TeacherPostRepository;
 import com.Xbrain.BackendXbrain.services.TeacherPostService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -22,9 +28,9 @@ public class TeacherPostController {
 
     @Autowired
     public TeacherPostController(
-                    TeacherPostService teacherPostService ,
-                    TeacherPostRepository teacherPostRepository
-            )
+            TeacherPostService teacherPostService ,
+            TeacherPostRepository teacherPostRepository
+    )
     {
         this.teacherPostService = teacherPostService;
         this.teacherPostRepository = teacherPostRepository;
