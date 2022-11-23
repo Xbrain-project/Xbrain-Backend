@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Table(name = "teachers")
 @Entity
@@ -23,11 +21,25 @@ public class TeacherEntity {
     private Long teacher_id ;
     private String name ;
     private String email ;
+    private String password;
+    private String school;
+    private String nickname;
+    private String sex;
+    private String status;
+    private String intro;
+    private int phone;
+    private String line;
+
+    private String role;
+
 
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     @JsonIgnore
     private TeacherPostEntity teacherPostEntity ;
+
+
+
 
 
 

@@ -71,10 +71,10 @@ public class ApplyPostServiceImpl implements ApplyPostService{
         Optional<StudentEntity> student = studentRepository.findById(student_id);
 
         if(post.isPresent() && student.isPresent()) {
-                temp_apply.setTeacherPostEntity(post.get());
-                temp_apply.setStudentEntity(student.get());
-                temp_apply.setStatus("waiting");
-                temp_apply.setApplyDate(new Timestamp(calendar.getTimeInMillis()));
+            temp_apply.setTeacherPostEntity(post.get());
+            temp_apply.setStudentEntity(student.get());
+            temp_apply.setStatus("waiting");
+            temp_apply.setApplyDate(new Timestamp(calendar.getTimeInMillis()));
 
             return  applyPostRepostity.save(temp_apply) ;
         }
@@ -122,7 +122,7 @@ public class ApplyPostServiceImpl implements ApplyPostService{
             i = i + 1 ;
         }
 
-         return teacherApplyPostDTOSList ;
+        return teacherApplyPostDTOSList ;
     }
 
     @Override

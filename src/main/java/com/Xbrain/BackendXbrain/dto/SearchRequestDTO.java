@@ -2,8 +2,6 @@ package com.Xbrain.BackendXbrain.dto;
 
 import lombok.Data;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
 import java.util.List;
 
 @Data

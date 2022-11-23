@@ -1,12 +1,10 @@
 package com.Xbrain.BackendXbrain.entity;
 
 import lombok.*;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
 @Table(name = "teacherPosts")
 @Entity

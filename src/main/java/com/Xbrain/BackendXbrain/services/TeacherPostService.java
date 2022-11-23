@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TeacherPostService {
-     TeacherPostEntity addTeacherPost(TeacherPostEntity teacherPost , Long teacher_id) ;
+    TeacherPostEntity addTeacherPost(TeacherPostEntity teacherPost , Long teacher_id) ;
 
     TeacherPostEntity updatePost(TeacherPostRequest request);
 

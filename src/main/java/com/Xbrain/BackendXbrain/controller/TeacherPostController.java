@@ -28,9 +28,9 @@ public class TeacherPostController {
 
     @Autowired
     public TeacherPostController(
-                    TeacherPostService teacherPostService ,
-                    TeacherPostRepository teacherPostRepository
-            )
+            TeacherPostService teacherPostService ,
+            TeacherPostRepository teacherPostRepository
+    )
     {
         this.teacherPostService = teacherPostService;
         this.teacherPostRepository = teacherPostRepository;
@@ -60,6 +60,15 @@ public class TeacherPostController {
         return teacherPostService.addTeacherPost( teacherPost ,  teacher_id);
 
     }
+
+//    @GetMapping("/addTeacherPost/{s_id}")
+//    public TeacherPostEntity newTeacherPost(@PathVariable("s_id") Long teacher_id ){
+//        System.out.println(teacherPost);
+////        return null ;
+//        //
+//        return teacherPostService.addTeacherPost( teacherPost ,  teacher_id);
+//
+//    }
     @GetMapping("/getAllTeacherPost")
     public List<TeacherPostEntity> getAllTeacherPost() {
         return teacherPostService.getAllTeacherPost() ;
