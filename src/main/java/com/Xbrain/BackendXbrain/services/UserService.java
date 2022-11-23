@@ -27,12 +27,32 @@ public class UserService {
 
     }
 
+
+
     public Object createUser(UserDTO userDTO,String role) {
 
         UserEntity user = this.dtoToUser(userDTO);
         UserEntity save = userRepo.save(user);
         TeacherEntity teacher = new TeacherEntity();
         StudentEntity student = new StudentEntity();
+
+
+        TeacherEntity.TeacherBuilder teacherBuilder =  new TeacherEntity.TeacherBuilder() ;
+
+
+        teacherBuilder.setName(userDTO.getName());
+        teacherBuilder.setEmail(userDTO.getEmail());
+        teacherBuilder.setPassword(userDTO.getPassword());
+        teacherBuilder.setNickname(userDTO.getNickname());
+        teacherBuilder.setSchool(userDTO.getSchool());
+        teacherBuilder.setPhone(userDTO.getPhone());
+        teacherBuilder.setLine(userDTO.getLine());
+        teacherBuilder.setSex(userDTO.getSex());
+        teacherBuilder.setStatus(userDTO.getStatus());
+        teacherBuilder.setIntro(userDTO.getIntro());
+        teacherBuilder.setRole(userDTO.getRole());
+        TeacherEntity employee = teacherBuilder
+                .build() ;
 
         if (role.startsWith("t")) {
             teacher.setName(userDTO.getName());
